@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shoken — Brand Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #f0eee9; font-family: "Inter Tight", sans-serif; }
+  * { box-sizing: border-box; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="DirectionA.jsx"></script>
+<script type="text/babel" src="DirectionB.jsx"></script>
+<script type="text/babel" src="DirectionC.jsx"></script>
+
+<script type="text/babel">
+
+// Shared helpers — small framing for each artboard's inner content.
+function Frame({ bg = '#FBF6EB', children, padding = 20 }) {
+  return (
+    <div style={{
+      width: '100%', height: '100%', background: bg, padding,
+      boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center',
+      position: 'relative', overflow: 'hidden',
+    }}>
+      {children}
+    </div>
+  );
+}
+
+// Principle card — small typographic note describing the direction.
+function Principle({ title, kicker, children, bg = '#FBF6EB', fg = '#15120E' }) {
+  return (
+    <div style={{
+      width: '100%', height: '100%', background: bg, color: fg, padding: 28,
+      boxSizing: 'border-box', fontFamily: '"Inter Tight", sans-serif',
+      display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+      gap: 16,
+    }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div style={{ fontSize: 10, letterSpacing: '0.22em', textTransform: 'uppercase', opacity: 0.55 }}>{kicker}</div>
+        <div style={{
+          fontFamily: '"Source Serif 4", Georgia, serif',
+          fontSize: 26, lineHeight: 1.15, fontWeight: 400, letterSpacing: '-0.015em',
+        }}>{title}</div>
+        <div style={{ fontSize: 13, lineHeight: 1.55, opacity: 0.82, maxWidth: 340 }}>{children}</div>
+      </div>
+      <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 10, opacity: 0.5 }}>shoken · 2026</div>
+    </div>
+  );
+}
+
+const { DesignCanvas, DCSection, DCArtboard } = window;
+
+function App() {
+  return (
+    <DesignCanvas>
+      {/* ═══════════ DIRECTION A — INSTITUTIONAL ═══════════ */}
+      <DCSection id="dir-a" title="A · Institutional" subtitle="FT masthead × Penguin spine. The brand lives in the hairline rule.">
+
+        <DCArtboard id="a-principle" label="Principle" width={420} height={300}>
+          <Principle kicker="Direction A" title="The restraint of an archive." bg={A_COLORS.paper} fg={A_COLORS.ink}>
+            A lowercase serif wordmark, a single vermilion rule, and acres of warm white. Reads like a Federal Reserve filing. The brand expresses itself through omission.
+          </Principle>
+        </DCArtboard>
+
+        <DCArtboard id="a-wordmark" label="Wordmark" width={420} height={200}>
+          <Frame bg={A_COLORS.paper}><A_Wordmark size={72} /></Frame>
+        </DCArtboard>
+
+        <DCArtboard id="a-wordmark-dark" label="Wordmark · on ink" width={420} height={200}>
+          <Frame bg={A_COLORS.ink}>
+            <A_Wordmark size={72} color={A_COLORS.bone} rule={A_COLORS.vermilion} />
+          </Frame>
+        </DCArtboard>
+
+        <DCArtboard id="a-mark-lockup" label="Mark · scales" width={420} height={200}>
+          <Frame bg={A_COLORS.paper}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32 }}>
+              <A_Mark size={96} /><A_Mark size={64} /><A_Mark size={40} /><A_Mark size={24} /><A_Mark size={16} />
+            </div>
+          </Frame>
+        </DCArtboard>
+
+        <DCArtboard id="a-palette" label="Palette" width={700} height={130}>
+          <A_Palette />
+        </DCArtboard>
+
+        <DCArtboard id="a-app-icon" label="App icon" width={200} height={200}>
+          <Frame bg={A_COLORS.paper}><A_AppIcon size={120} /></Frame>
+        </DCArtboard>
+
+        <DCArtboard id="a-seal" label="Seal" width={200} height={200}>
+          <Frame bg={A_COLORS.paper}><A_Seal size={120} /></Frame>
+        </DCArtboard>
+
+        <DCArtboard id="a-business-card" label="Business card" width={340} height={200}>
+          <A_BusinessCard />
+        </DCArtboard>
+
+        <DCArtboard id="a-letterhead" label="Letterhead fragment" width={360} height={440}>
+          <A_Letterhead />
+        </DCArtboard>
+
+        <DCArtboard id="a-typography" label="Type voice" width={500} height={300}>
+          <div style={{ background: A_COLORS.paper, color: A_COLORS.ink, width: '100%', height: '100%', padding: 28, boxSizing: 'border-box' }}>
+            <div style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: A_COLORS.mist, marginBottom: 10 }}>
+              Source Serif 4 · Inter Tight · JetBrains Mono
+            </div>
+            <div style={{ fontFamily: '"Source Serif 4", Georgia, serif', fontSize: 40, lineHeight: 1.05, fontWeight: 400, letterSpacing: '-0.015em' }}>
+              The ledger between<br />mission and government.
+            </div>
+            <div style={{ height: 1, background: A_COLORS.ink, margin: '16px 0' }} />
+            <div style={{ fontFamily: '"Inter Tight", sans-serif', fontSize: 13, lineHeight: 1.55, color: A_COLORS.sumi, maxWidth: 380 }}>
+              Shoken assembles and validates human services contract invoices for government approval and payment.
+            </div>
+            <div style={{ marginTop: 12, fontFamily: '"JetBrains Mono", monospace', fontSize: 11, color: A_COLORS.sumi }}>
+              INV-2026-0421 · $1,284,502.00 · 22 Apr 2026
+            </div>
+          </div>
+        </DCArtboard>
+
+      </DCSection>
+
+      {/* ═══════════ DIRECTION B — SOVEREIGN SEAL ═══════════ */}
+      <DCSection id="dir-b" title="B · Sovereign Seal" subtitle="Imperial hanko × Red Cross seal. The mark carries the brand.">
+
+        <DCArtboard id="b-principle" label="Principle" width={420} height={300}>
+          <Principle kicker="Direction B" title="The authority of a seal." bg={B_COLORS.ivory} fg={B_COLORS.ink}>
+            A geometric sans wordmark paired with a square vermilion mark — read as a modern hanko. Every surface gets stamped. The identity is the seal itself.
+          </Principle>
+        </DCArtboard>
+
+        <DCArtboard id="b-wordmark" label="Wordmark" width={420} height={200}>
+          <Frame bg={B_COLORS.ivory}><B_Wordmark size={48} /></Frame>
+        </DCArtboard>
+
+        <DCArtboard id="b-wordmark-dark" label="Wordmark · on ink" width={420} height={200}>
+          <Frame bg={B_COLORS.ink}><B_Wordmark size={48} dark={true} /></Frame>
+        </DCArtboard>
+
+        <DCArtboard id="b-mark-lockup" label="Mark · scales" width={420} height={200}>
+          <Frame bg={B_COLORS.ivory}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32 }}>
+              <B_Mark size={96} /><B_Mark size={64} /><B_Mark size={40} /><B_Mark size={24} /><B_Mark size={16} />
+            </div>
+          </Frame>
+        </DCArtboard>
+
+        <DCArtboard id="b-palette" label="Palette" width={700} height={200}>
+          <B_Palette />
+        </DCArtboard>
+
+        <DCArtboard id="b-app-icon" label="App icon" width={200} height={200}>
+          <Frame bg={B_COLORS.sand}><B_AppIcon size={120} /></Frame>
+        </DCArtboard>
+
+        <DCArtboard id="b-seal" label="Seal" width={200} height={200}>
+          <Frame bg={B_COLORS.ivory}><B_Seal size={120} /></Frame>
+        </DCArtboard>
+
+        <DCArtboard id="b-business-card" label="Business card" width={340} height={200}>
+          <B_BusinessCard />
+        </DCArtboard>
+
+        <DCArtboard id="b-letterhead" label="Letterhead fragment" width={360} height={440}>
+          <B_Letterhead />
+        </DCArtboard>
+
+        <DCArtboard id="b-typography" label="Type voice" width={500} height={300}>
+          <div style={{ background: B_COLORS.ivory, color: B_COLORS.ink, width: '100%', height: '100%', padding: 28, boxSizing: 'border-box' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+              <B_Mark size={22} />
+              <div style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: B_COLORS.ash }}>
+                Source Serif 4 · Inter Tight · JetBrains Mono
+              </div>
+            </div>
+            <div style={{ fontFamily: '"Source Serif 4", Georgia, serif', fontSize: 38, lineHeight: 1.08, fontWeight: 400, letterSpacing: '-0.015em' }}>
+              Signed. Sealed.<br />Paid in minutes.
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, margin: '16px 0' }}>
+              <div style={{ flex: 1, height: 1, background: B_COLORS.ink }} />
+              <div style={{ width: 6, height: 6, background: B_COLORS.seal, transform: 'rotate(45deg)' }} />
+              <div style={{ flex: 1, height: 1, background: B_COLORS.ink }} />
+            </div>
+            <div style={{ fontFamily: '"Inter Tight", sans-serif', fontSize: 13, lineHeight: 1.55, color: B_COLORS.char, maxWidth: 380 }}>
+              Shoken compresses the nonprofit-to-government reimbursement cycle from weeks to minutes.
+            </div>
+          </div>
+        </DCArtboard>
+
+      </DCSection>
+
+      {/* ═══════════ DIRECTION C — MODERN MEIJI ═══════════ */}
+      <DCSection id="dir-c" title="C · Modern Meiji" subtitle="Kenya Hara × Muji × Stripe. A constructed plum-blossom mark as the anchor.">
+
+        <DCArtboard id="c-principle" label="Principle" width={420} height={300}>
+          <Principle kicker="Direction C" title="The clarity of a contemporary design office." bg={C_COLORS.kinari} fg={C_COLORS.sumi}>
+            A geometric six-petal plum-blossom mark — built from circles, centered by a seal square. Read as distinctly Japanese-modern without cliché. Paired with a warmer, slightly broader palette.
+          </Principle>
+        </DCArtboard>
+
+        <DCArtboard id="c-wordmark" label="Wordmark" width={420} height={200}>
+          <Frame bg={C_COLORS.kinari}><C_Wordmark size={48} /></Frame>
+        </DCArtboard>
+
+        <DCArtboard id="c-wordmark-stacked" label="Wordmark · stacked" width={420} height={280}>
+          <Frame bg={C_COLORS.kinari}><C_Wordmark size={60} stacked={true} /></Frame>
+        </DCArtboard>
+
+        <DCArtboard id="c-mark-lockup" label="Mark · scales" width={420} height={200}>
+          <Frame bg={C_COLORS.kinari}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32 }}>
+              <C_MarkSVG size={96} /><C_MarkSVG size={64} /><C_MarkSVG size={40} /><C_MarkSVG size={24} /><C_MarkSVG size={16} />
+            </div>
+          </Frame>
+        </DCArtboard>
+
+        <DCArtboard id="c-palette" label="Palette" width={700} height={260}>
+          <C_Palette />
+        </DCArtboard>
+
+        <DCArtboard id="c-app-icon" label="App icon" width={200} height={200}>
+          <Frame bg={C_COLORS.shoji}><C_AppIcon size={120} /></Frame>
+        </DCArtboard>
+
+        <DCArtboard id="c-seal" label="Seal" width={200} height={200}>
+          <Frame bg={C_COLORS.shoji}><C_Seal size={120} /></Frame>
+        </DCArtboard>
+
+        <DCArtboard id="c-business-card" label="Business card" width={340} height={200}>
+          <C_BusinessCard />
+        </DCArtboard>
+
+        <DCArtboard id="c-letterhead" label="Letterhead fragment" width={360} height={440}>
+          <C_Letterhead />
+        </DCArtboard>
+
+        <DCArtboard id="c-typography" label="Type voice" width={500} height={300}>
+          <div style={{ background: C_COLORS.kinari, color: C_COLORS.sumi, width: '100%', height: '100%', padding: 28, boxSizing: 'border-box' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+              <C_MarkSVG size={24} />
+              <div style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: C_COLORS.stone }}>
+                Source Serif 4 · Inter Tight · JetBrains Mono
+              </div>
+            </div>
+            <div style={{ fontFamily: '"Source Serif 4", Georgia, serif', fontSize: 38, lineHeight: 1.08, fontWeight: 400, letterSpacing: '-0.015em' }}>
+              A modern form<br />for an old duty.
+            </div>
+            <div style={{ height: 1, background: C_COLORS.fog, margin: '16px 0' }} />
+            <div style={{ fontFamily: '"Inter Tight", sans-serif', fontSize: 13, lineHeight: 1.55, color: C_COLORS.charcoal, maxWidth: 380 }}>
+              Weeks of administrative work, compressed to minutes.
+            </div>
+            <div style={{ marginTop: 12, fontFamily: '"JetBrains Mono", monospace', fontSize: 11, color: C_COLORS.charcoal }}>
+              INV-2026-0421 · $1,284,502.00 · 証券
+            </div>
+          </div>
+        </DCArtboard>
+
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

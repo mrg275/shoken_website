@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Join us — Shoken</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label {
+    font-size: 11px; color: var(--stone); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+  }
+  .field input {
+    font-family: var(--font-sans); font-size: 15px; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 4px;
+    padding: 12px 14px; outline: none;
+    transition: border-color 120ms var(--ease), box-shadow 120ms var(--ease);
+  }
+  .field input:focus {
+    border-color: var(--shu); box-shadow: 0 0 0 3px rgba(194,56,47,0.1);
+  }
+  .file-drop {
+    font-family: var(--font-sans); font-size: 14px;
+    border: 1.5px dashed var(--fog); border-radius: 4px;
+    padding: 20px 16px; background: var(--kinari);
+    color: var(--ash); cursor: pointer; text-align: center;
+    transition: border-color 120ms var(--ease);
+  }
+  .file-drop:hover { border-color: var(--shu); color: var(--ink); }
+  .file-drop input { display: none; }
+  .job-card {
+    background: var(--kinari); border-radius: 8px;
+    padding: 40px 40px 36px; display: flex; flex-direction: column;
+    transition: box-shadow 200ms var(--ease);
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="Brand.jsx"></script>
+<script type="text/babel">
+const { Nav, Footer, Button, Arrow, Eyebrow, Section, PageHeader } = window;
+
+const JOBS = [
+  {
+    slug: 'founding-engineer',
+    title: 'Founding Engineer',
+    comp: '$200–240k · 1–4% equity',
+    location: 'New York, NY · In-office',
+    blurb: `As a Founding Engineer, you will build the core invoice assembly and validation engine — the system that turns a nonprofit's raw ledger, timesheets, and contract schedules into a pre-validated submission an agency can approve in a click. This is a hands-on, execution-focused role. You will own large surfaces of the product and the architectural decisions that come with them.`,
+    requirements: ['Curiosity', 'Intensity', 'Technical Rigor'],
+  },
+];
+
+function JobCard({ job }) {
+  return (
+    <div className="job-card">
+      <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, letterSpacing: '-0.02em', fontWeight: 400, lineHeight: 1.2, marginBottom: 6 }}>
+        {job.title}
+      </div>
+      <div style={{ fontSize: 14, color: 'var(--ash)', fontFamily: 'var(--font-mono)', marginBottom: 20 }}>
+        {job.comp}
+      </div>
+      <div style={{ fontSize: 14.5, color: 'var(--ash)', lineHeight: 1.6, marginBottom: 24 }}>
+        {job.blurb}
+      </div>
+      <div style={{ fontSize: 11, color: 'var(--stone)', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 500, marginBottom: 12 }}>
+        Requirements
+      </div>
+      <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14.5, color: 'var(--char)', lineHeight: 1.9 }}>
+        {job.requirements.map(r => <li key={r}>{r}</li>)}
+      </ul>
+      <div style={{ marginTop: 'auto', paddingTop: 28 }}>
+        <a href={`apply.html?role=${encodeURIComponent(job.title)}`} style={{
+          fontSize: 15, fontWeight: 500, color: 'var(--ink)', textDecoration: 'none',
+          display: 'inline-flex', alignItems: 'center', gap: 10,
+        }}>Apply <Arrow /></a>
+      </div>
+    </div>
+  );
+}
+
+function Careers() {
+  return (
+    <div>
+      <Nav current="careers.html" />
+      <PageHeader
+        eyebrow="Join us"
+        title="Institutional work, done by a small team."
+        subtitle="Shoken is a small team building the financial plumbing between government and the nonprofits it funds. We hire people who take the work seriously — and who want the work to matter." />
+
+      <Section pad="72px 40px 96px">
+        <div style={{ marginBottom: 40, display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 32, letterSpacing: '-0.02em', fontWeight: 400 }}>
+            Open roles
+          </div>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--stone)' }}>
+            1 position · New York
+          </div>
+        </div>
+        <div style={{ maxWidth: 720 }}>
+          {JOBS.map(j => <JobCard key={j.slug} job={j} />)}
+        </div>
+      </Section>
+
+      <section style={{ padding: '96px 40px', background: 'var(--ink)', color: 'var(--kinari)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 64 }}>
+          <div>
+            <Eyebrow color="var(--shu-bright)">How we work</Eyebrow>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 40, lineHeight: 1.12, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400 }}>
+              A few things<br />worth knowing.
+            </div>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            {[
+              ['In-office in NYC', 'We work together, five days a week, in Manhattan. This is intentional.'],
+              ['Ship to production weekly', 'Short feedback loops with real agencies and nonprofits. No theatrical roadmaps.'],
+              ['Full healthcare', 'Medical, dental, vision, fully covered for you and your dependents.'],
+              ['Serious equity', 'Meaningful ownership from day one. Ten-year exercise windows on options.'],
+              ['Direct work', 'You will talk to agency contract officers and nonprofit CFOs directly. No account-management buffer.'],
+            ].map(([t, d]) => (
+              <div key={t} style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: 32, paddingBottom: 16, borderBottom: '1px solid rgba(246,241,232,0.1)' }}>
+                <div style={{ fontSize: 14.5, fontWeight: 500 }}>{t}</div>
+                <div style={{ fontSize: 14, color: 'var(--mist)' }}>{d}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '120px 40px', textAlign: 'center' }}>
+        <div style={{ maxWidth: 680, margin: '0 auto' }}>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 44, lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 400, margin: '0 0 20px' }}>
+            Don't see your role?
+          </div>
+          <div style={{ fontSize: 16, color: 'var(--ash)', marginBottom: 28 }}>
+            If you think you can help us build this, write to us. Tell us what you would work on.
+          </div>
+          <Button size="lg" href="mailto:jobs@shoken.co">jobs@shoken.co <Arrow /></Button>
+        </div>
+      </section>
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Careers />);
+</script>
+</body>
+</html>

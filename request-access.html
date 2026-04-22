@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Request access — Shoken</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label {
+    font-size: 11px; color: var(--stone); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+  }
+  .field input, .field select, .field textarea {
+    font-family: var(--font-sans); font-size: 15px; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 4px;
+    padding: 12px 14px; outline: none; transition: border-color 120ms var(--ease), box-shadow 120ms var(--ease);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--shu); box-shadow: 0 0 0 3px rgba(194,56,47,0.1);
+  }
+  .field input::placeholder, .field textarea::placeholder { color: var(--mist); }
+  .field textarea { resize: vertical; min-height: 110px; font-family: var(--font-sans); }
+  .radio-row { display: flex; gap: 8px; }
+  .radio-pill {
+    flex: 1; text-align: center; cursor: pointer;
+    padding: 14px 12px; border: 1px solid var(--rule); border-radius: 4px;
+    font-size: 14px; color: var(--char); background: var(--paper);
+    transition: all 120ms var(--ease); user-select: none;
+  }
+  .radio-pill:hover { border-color: var(--ash); }
+  .radio-pill.active {
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="Brand.jsx"></script>
+<script type="text/babel">
+const { Nav, Footer, Button, Arrow, Eyebrow, Section } = window;
+
+function RequestAccess() {
+  const [role, setRole] = React.useState('nonprofit');
+  const [submitted, setSubmitted] = React.useState(false);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <div>
+      <Nav current="request-access.html" />
+
+      <section style={{ padding: '72px 40px 56px', borderBottom: '1px solid var(--rule)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <Eyebrow>Request access</Eyebrow>
+          <h1 style={{
+            fontFamily: 'var(--font-display)', fontSize: 64, lineHeight: 1.08,
+            fontWeight: 400, letterSpacing: '-0.03em', margin: '20px 0 24px', maxWidth: 820,
+          }}>
+            {submitted ? 'Thank you. We will be in touch.' : 'Bring us an invoice. We will show you the trace.'}
+          </h1>
+          {!submitted && (
+            <p style={{ fontSize: 18, color: 'var(--ash)', lineHeight: 1.5, maxWidth: 620, margin: 0 }}>
+              Shoken is onboarding a limited cohort of agencies and nonprofits in 2026. Tell us about your contracts and we will schedule a walkthrough on a real invoice of yours.
+            </p>
+          )}
+        </div>
+      </section>
+
+      {submitted ? (
+        <Section pad="64px 40px 120px">
+          <div style={{ maxWidth: 720, margin: '0 auto', padding: '48px 40px', background: 'var(--paper)', border: '1px solid var(--rule)', borderRadius: 8, textAlign: 'center' }}>
+            <div style={{ width: 48, height: 48, borderRadius: 24, background: 'var(--shu)', margin: '0 auto 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--paper)', fontSize: 22 }}>✓</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, letterSpacing: '-0.02em', marginBottom: 14, lineHeight: 1.2 }}>
+              Your request is filed.
+            </div>
+            <div style={{ fontSize: 15, color: 'var(--ash)', lineHeight: 1.6, maxWidth: 480, margin: '0 auto 28px' }}>
+              Expect a reply within two business days. If your contracts are on an agency schedule we already support, we can often schedule a walkthrough inside the same week.
+            </div>
+            <Button href="index.html" variant="secondary">Back to home</Button>
+          </div>
+        </Section>
+      ) : (
+        <Section pad="64px 40px 120px">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 80 }}>
+            {/* Left rail — context */}
+            <div>
+              <div style={{ position: 'sticky', top: 88 }}>
+                <div style={{ fontSize: 11, color: 'var(--stone)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 14 }}>What happens next</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+                  {[
+                    ['01', 'We review your request', 'Within 2 business days.'],
+                    ['02', 'A 30-minute walkthrough', 'We load one of your invoices and show you the validation trace.'],
+                    ['03', 'Pilot on a single contract', 'If it fits, we onboard one portfolio together. No switching costs.'],
+                  ].map(([n, t, d]) => (
+                    <div key={n} style={{ display: 'grid', gridTemplateColumns: '36px 1fr', gap: 14 }}>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--shu)', paddingTop: 2 }}>{n}</div>
+                      <div>
+                        <div style={{ fontSize: 14.5, fontWeight: 500, marginBottom: 4 }}>{t}</div>
+                        <div style={{ fontSize: 13.5, color: 'var(--ash)', lineHeight: 1.55 }}>{d}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ marginTop: 36, paddingTop: 24, borderTop: '1px solid var(--rule)', fontSize: 13, color: 'var(--ash)', lineHeight: 1.6 }}>
+                  For press, partnerships, or anything else, <a href="mailto:hello@shoken.co" style={{ color: 'var(--ink)', textUnderlineOffset: 3 }}>hello@shoken.co</a>.
+                </div>
+              </div>
+            </div>
+
+            {/* Form */}
+            <form onSubmit={onSubmit} style={{ background: 'var(--paper)', border: '1px solid var(--rule)', borderRadius: 8, padding: '40px 40px 36px', boxShadow: 'var(--shadow-raise)' }}>
+              <div className="field" style={{ marginBottom: 28 }}>
+                <label>I represent</label>
+                <div className="radio-row">
+                  {[
+                    ['nonprofit', 'A nonprofit'],
+                    ['agency', 'A government agency'],
+                    ['other', 'Other'],
+                  ].map(([v, l]) => (
+                    <div key={v} className={`radio-pill ${role === v ? 'active' : ''}`} onClick={() => setRole(v)}>{l}</div>
+                  ))}
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+                <div className="field">
+                  <label>First name</label>
+                  <input required placeholder="Daniela" />
+                </div>
+                <div className="field">
+                  <label>Last name</label>
+                  <input required placeholder="Ruiz" />
+                </div>
+              </div>
+
+              <div className="field" style={{ marginBottom: 20 }}>
+                <label>Work email</label>
+                <input required type="email" placeholder="druiz@phipps.org" />
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 32 }}>
+                <div className="field">
+                  <label>{role === 'agency' ? 'Agency' : 'Organization'}</label>
+                  <input required placeholder={role === 'agency' ? 'NYC Department of Social Services' : 'Phipps Neighborhoods'} />
+                </div>
+                <div className="field">
+                  <label>Title</label>
+                  <input required placeholder="Chief Financial Officer" />
+                </div>
+              </div>
+
+              <div className="field" style={{ marginBottom: 32 }}>
+                <label>Anything we should know</label>
+                <textarea placeholder={role === 'agency'
+                  ? 'Which divisions, how many nonprofit providers, systems in use…'
+                  : 'Which agencies, which systems of record, current pain points…'} />
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 24, borderTop: '1px solid var(--rule)' }}>
+                <div style={{ fontSize: 12, color: 'var(--stone)', fontFamily: 'var(--font-mono)' }}>
+                  We reply within 2 business days.
+                </div>
+                <button type="submit" style={{
+                  background: 'var(--ink)', color: 'var(--paper)', border: 'none',
+                  padding: '12px 22px', fontSize: 14, fontWeight: 500,
+                  fontFamily: 'var(--font-sans)', borderRadius: 4, cursor: 'pointer',
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                }}>
+                  Request access <Arrow />
+                </button>
+              </div>
+            </form>
+          </div>
+        </Section>
+      )}
+
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<RequestAccess />);
+</script>
+</body>
+</html>

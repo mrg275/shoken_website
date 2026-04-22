@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Product — Shoken</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="Brand.jsx"></script>
+<script type="text/babel">
+const { Nav, Footer, Button, Arrow, Eyebrow, Section, PageHeader } = window;
+
+function StepRow({ num, title, body, children }) {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '64px 1fr 1.2fr', gap: 40, padding: '56px 0', borderTop: '1px solid var(--rule)' }}>
+      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--shu)' }}>{num}</div>
+      <div>
+        <div style={{ fontFamily: 'var(--font-display)', fontSize: 34, lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 400, marginBottom: 14 }}>{title}</div>
+        <div style={{ fontSize: 15.5, lineHeight: 1.55, color: 'var(--ash)', maxWidth: 440 }}>{body}</div>
+      </div>
+      <div>{children}</div>
+    </div>
+  );
+}
+
+function Panel({ children, label }) {
+  return (
+    <div style={{ border: '1px solid var(--rule)', borderRadius: 8, background: 'var(--paper)', boxShadow: 'var(--shadow-raise)', overflow: 'hidden' }}>
+      {label && (
+        <div style={{ borderBottom: '1px solid var(--rule)', padding: '10px 16px', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--stone)', letterSpacing: '0.1em', textTransform: 'uppercase', background: 'var(--kinari)' }}>{label}</div>
+      )}
+      {children}
+    </div>
+  );
+}
+
+function IngestPanel() {
+  const sources = [
+    ['QuickBooks Online', 'GL export · 1,248 entries', 'var(--moss)'],
+    ['ADP Workforce Now', 'Timesheets · 47 staff', 'var(--moss)'],
+    ['Dropbox · /2026-Q2/backup', '184 receipts · 12 subcontracts', 'var(--moss)'],
+    ['Google Drive · DHS contracts', '3 schedules · 1 amendment', 'var(--moss)'],
+    ['Salesforce NPSP', 'Cases · 1,004 units YTD', 'var(--mizu)'],
+  ];
+  return (
+    <Panel label="Sources · 5 connected">
+      {sources.map(([s, d, c], i) => (
+        <div key={s} style={{ padding: '14px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: i < 4 ? '1px solid var(--rule)' : 'none' }}>
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 500 }}>{s}</div>
+            <div style={{ fontSize: 12, color: 'var(--stone)', fontFamily: 'var(--font-mono)', marginTop: 2 }}>{d}</div>
+          </div>
+          <div style={{ width: 8, height: 8, borderRadius: 4, background: c }} />
+        </div>
+      ))}
+    </Panel>
+  );
+}
+
+function ValidatePanel() {
+  return (
+    <Panel label="INV-2026-0421 · validation">
+      <div style={{ padding: 16, fontFamily: 'var(--font-mono)', fontSize: 12.5, lineHeight: 1.85 }}>
+        {[
+          ['✓', 'Contract C-42181 · active', 'var(--moss)'],
+          ['✓', 'Case mgmt rate $48/hr matches schedule', 'var(--moss)'],
+          ['✓', 'Unit cap · 1,004 / 1,200 YTD', 'var(--moss)'],
+          ['!', 'Indirect · 9.8% exceeds 9.5% cap', 'var(--shu)'],
+          ['↳', 'Reclassify $1,482.00 to allowable', 'var(--char)'],
+          ['✓', 'Match · 25% cash + 5% in-kind', 'var(--moss)'],
+          ['✓', 'Backup · 47 / 47 timesheets', 'var(--moss)'],
+          ['✓', 'Subrecipient monitoring · passed', 'var(--moss)'],
+        ].map(([m, l, c], i) => (
+          <div key={i} style={{ color: c, display: 'flex', gap: 14 }}>
+            <span style={{ color: 'var(--stone)', width: 12 }}>{m}</span>
+            <span>{l}</span>
+          </div>
+        ))}
+      </div>
+    </Panel>
+  );
+}
+
+function SubmitPanel() {
+  return (
+    <Panel label="Routing · DHS / Finance / Reimbursement">
+      <div style={{ padding: 20 }}>
+        {[
+          ['14:02:11', 'Package assembled', 'PDF · 312 pp', 'var(--char)'],
+          ['14:02:14', 'Signed · Treasurer', 'DS-2026-0192', 'var(--char)'],
+          ['14:02:17', 'Submitted via PASSPort', 'ACK-77821', 'var(--ink)'],
+          ['14:02:22', 'Agency received', 'inbox · review queue', 'var(--moss)'],
+          ['—', 'Awaiting agency review', 'SLA · 3 business days', 'var(--stone)'],
+        ].map(([t, s, d, c], i, arr) => (
+          <div key={i} style={{ display: 'grid', gridTemplateColumns: '82px 1fr 160px', padding: '12px 0', borderBottom: i < arr.length - 1 ? '1px solid var(--rule)' : 'none', fontSize: 13 }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--stone)' }}>{t}</span>
+            <span style={{ color: c, fontWeight: 500 }}>{s}</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--stone)', textAlign: 'right' }}>{d}</span>
+          </div>
+        ))}
+      </div>
+    </Panel>
+  );
+}
+
+function FeatureGrid() {
+  const rows = [
+    ['Rule engine', 'Schedules, caps, fringe, indirect, match — all expressed as contract-native rules, not scripts.'],
+    ['Audit trace', 'Every line has a citation. Every decision has a reason. Every submission has a signature.'],
+    ['Multi-contract', 'One invoice can draw from three contracts. Shoken splits the allocations automatically.'],
+    ['Corrections', 'Returned lines are flagged and round-tripped to the source system with the agency\'s reason attached.'],
+    ['Permissions', 'Program officer, finance, treasurer, auditor. Four roles, one paper trail.'],
+    ['Security', 'SOC 2 Type II. FedRAMP-ready. Data residency options for state-regulated workloads.'],
+  ];
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 1, background: 'var(--rule)', border: '1px solid var(--rule)', borderRadius: 6 }}>
+      {rows.map(([t, d]) => (
+        <div key={t} style={{ background: 'var(--paper)', padding: '32px 28px' }}>
+          <div style={{ fontSize: 18, fontWeight: 500, letterSpacing: '-0.015em', marginBottom: 8 }}>{t}</div>
+          <div style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--ash)' }}>{d}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Product() {
+  return (
+    <div>
+      <Nav current="product.html" />
+      <PageHeader
+        eyebrow="Product"
+        title="One ledger. Every invoice. End-to-end."
+        subtitle="Shoken ingests your financial systems, assembles agency-ready invoices, validates them against the contract, and submits through the right channel. With a full audit trail." />
+      <Section pad="24px 40px 96px">
+        <StepRow num="01" title="Ingest" body="Connect your ledger, payroll, and document stores. Shoken reads the contracts and learns the schedule — no CSV templates, no manual mapping.">
+          <IngestPanel />
+        </StepRow>
+        <StepRow num="02" title="Assemble" body="Line items are drafted in the format each agency expects. Backup documentation is attached automatically. The package is ready before anyone asks.">
+          <SubmitPanel />
+        </StepRow>
+        <StepRow num="03" title="Validate" body="Every line is reconciled against contract schedules, unit caps, allowable cost rules, and match requirements. Issues surface with a citation and a fix.">
+          <ValidatePanel />
+        </StepRow>
+        <StepRow num="04" title="Submit" body="Filed through the correct agency channel — PASSPort, CityShare, SFS, or direct — with signatures, ACK numbers, and a complete chain of custody.">
+          <Panel label="Filed · INV-2026-0421">
+            <div style={{ padding: 24, fontFamily: 'var(--font-mono)', fontSize: 12.5, color: 'var(--char)', lineHeight: 1.8 }}>
+              <div style={{ color: 'var(--stone)' }}>To: DHS · Finance · Reimbursement</div>
+              <div style={{ color: 'var(--stone)' }}>Via: PASSPort · Ref ACK-77821</div>
+              <div style={{ color: 'var(--stone)' }}>Contract: C-42181</div>
+              <div style={{ color: 'var(--stone)' }}>Period: 2026-04-01 → 2026-04-30</div>
+              <div style={{ marginTop: 18, padding: '14px 16px', background: 'var(--kinari)', border: '1px solid var(--rule)', borderRadius: 4, color: 'var(--ink)' }}>
+                <div style={{ fontSize: 11, letterSpacing: '0.1em', color: 'var(--shu)', textTransform: 'uppercase', marginBottom: 6 }}>Amount submitted</div>
+                <div style={{ fontSize: 26, fontWeight: 500 }}>$128,450.00</div>
+              </div>
+            </div>
+          </Panel>
+        </StepRow>
+      </Section>
+
+      <section style={{ padding: '96px 40px', background: 'var(--kinari)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ maxWidth: 720, marginBottom: 48 }}>
+            <Eyebrow>Platform</Eyebrow>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 44, lineHeight: 1.08, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400 }}>
+              What lives inside the platform.
+            </div>
+          </div>
+          <FeatureGrid />
+        </div>
+      </section>
+
+      <section style={{ padding: '120px 40px', textAlign: 'center' }}>
+        <div style={{ maxWidth: 720, margin: '0 auto' }}>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 52, lineHeight: 1.05, letterSpacing: '-0.03em', fontWeight: 400, margin: '0 0 24px' }}>
+            See it on your own contracts.
+          </div>
+          <div style={{ fontSize: 16.5, color: 'var(--ash)', marginBottom: 32 }}>
+            We'll load a recent invoice of yours and show you the validation trace.
+          </div>
+          <Button size="lg">Request access <Arrow /></Button>
+        </div>
+      </section>
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Product />);
+</script>
+</body>
+</html>

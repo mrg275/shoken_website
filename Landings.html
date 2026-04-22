@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shoken — Landing pages (C1 vs C4)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #f0eee9; font-family: "Inter Tight", sans-serif; }
+  * { box-sizing: border-box; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="Landings.jsx"></script>
+
+<script type="text/babel">
+const { DesignCanvas, DCSection, DCArtboard,
+        LandingC1, LandingC4,
+        C4a_Mark, C4b_Mark, C4c_Mark, C4_Wordmark, T } = window;
+
+function MarkCard({ MarkComp, label, description }) {
+  return (
+    <div style={{
+      width: '100%', height: '100%', background: T.kinari, padding: 24,
+      boxSizing: 'border-box', fontFamily: '"Inter Tight", sans-serif',
+      display: 'flex', flexDirection: 'column', gap: 12,
+    }}>
+      <div style={{ fontSize: 10, color: T.shu, letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 500 }}>{label}</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+        <MarkComp size={72} color={T.ink} seal={T.shu} />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <C4_Wordmark size={22} mark={MarkComp} />
+          <C4_Wordmark size={22} mark={MarkComp} dark={false} />
+        </div>
+      </div>
+      <div style={{ fontSize: 12, color: T.ash, lineHeight: 1.5 }}>{description}</div>
+      <div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', marginTop: 'auto' }}>
+        <MarkComp size={40} color={T.ink} seal={T.shu} />
+        <MarkComp size={24} color={T.ink} seal={T.shu} />
+        <MarkComp size={16} color={T.ink} seal={T.shu} />
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <DesignCanvas>
+      <DCSection id="c4-marks" title="C4 · New mark options" subtitle="Three fresh takes to replace the original. Pick one (or mix).">
+        <DCArtboard id="c4a" label="C4a · The notch" width={340} height={260}>
+          <MarkCard MarkComp={C4a_Mark} label="Option A"
+            description="A corner-folded envelope. The notch reveals a vermilion seal underneath. Reads as: letter of credit, sealed document." />
+        </DCArtboard>
+        <DCArtboard id="c4b" label="C4b · The aperture" width={340} height={260}>
+          <MarkCard MarkComp={C4b_Mark} label="Option B"
+            description="Concentric squares with a rotated vermilion diamond inside. Geometric, mechanical. Reads as: permit stamp, validation sigil." />
+        </DCArtboard>
+        <DCArtboard id="c4c" label="C4c · The chop" width={340} height={260}>
+          <MarkCard MarkComp={C4c_Mark} label="Option C"
+            description="A constructed monogram-S drawn from two interlocking brackets. Reads as: hanko, architectural, confident." />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="c1-landing" title="C1 · Landing page" subtitle="Linear / Vercel · crisp, geometric, workspace-forward.">
+        <DCArtboard id="c1-land" label="Landing · Linear/Vercel" width={1280} height={2800}>
+          <LandingC1 />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="c4-landings" title="C4 · Landing page (with each mark)" subtitle="Stripe / Mercury · refined, editorial, seal-forward. One variant per mark.">
+        <DCArtboard id="c4a-land" label="C4a · The notch" width={1280} height={3000}>
+          <LandingC4 Mark={C4a_Mark} />
+        </DCArtboard>
+        <DCArtboard id="c4b-land" label="C4b · The aperture" width={1280} height={3000}>
+          <LandingC4 Mark={C4b_Mark} />
+        </DCArtboard>
+        <DCArtboard id="c4c-land" label="C4c · The chop" width={1280} height={3000}>
+          <LandingC4 Mark={C4c_Mark} />
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shoken — The ledger between mission and government</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="Brand.jsx"></script>
+<script type="text/babel" src="HeroProductFrame.jsx"></script>
+<script type="text/babel">
+const { Nav, Footer, Button, Arrow, Eyebrow, Mark, Wordmark, HeroProductFrame, Section, Badge } = window;
+
+const SAMPLE_LOGOS = [
+  { name: 'BronxWorks', weight: 700 },
+  { name: 'Henry Street', font: 'var(--font-display)', weight: 500 },
+  { name: 'Good Shepherd', weight: 600 },
+  { name: 'Phipps Houses', weight: 600, tracking: '0.02em' },
+  { name: 'Safe Horizon', weight: 500, italic: true },
+  { name: 'Coalition for Homeless', weight: 500 },
+];
+
+function LogoRow({ logos, color = 'var(--char)' }) {
+  return (
+    <div style={{ display: 'flex', gap: 42, alignItems: 'center', flexWrap: 'wrap', columnGap: 48, rowGap: 18 }}>
+      {logos.map((l, i) => (
+        <div key={i} style={{
+          fontFamily: l.font || 'var(--font-sans)',
+          fontSize: 17, fontWeight: l.weight || 600, color,
+          letterSpacing: l.tracking || '-0.02em',
+          fontStyle: l.italic ? 'italic' : 'normal',
+        }}>{l.name}</div>
+      ))}
+    </div>
+  );
+}
+
+function Home() {
+  return (
+    <div>
+      <Nav current="index.html" />
+
+      {/* HERO */}
+      <section style={{ padding: '88px 40px 72px' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <Eyebrow>Human services reimbursement</Eyebrow>
+          <h1 style={{
+            fontFamily: 'var(--font-display)', fontSize: 84, lineHeight: 1.05, fontWeight: 400,
+            letterSpacing: '-0.03em', margin: '22px 0 56px', maxWidth: 920,
+          }}>
+            The ledger between<br />mission and government.
+          </h1>
+          <p style={{ fontSize: 20, lineHeight: 1.5, color: 'var(--ash)', maxWidth: 640, margin: '0 0 36px' }}>
+            Shoken assembles and validates human services contract invoices for government approval and payment. Weeks of administrative work, compressed to minutes.
+          </p>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 72 }}>
+            <Button size="lg">Request access <Arrow /></Button>
+            <Button variant="secondary" size="lg">See how it works</Button>
+            <div style={{ fontSize: 12, color: 'var(--stone)', marginLeft: 12, fontFamily: 'var(--font-mono)' }}>
+              SOC 2 · FedRAMP-ready
+            </div>
+          </div>
+          <HeroProductFrame />
+        </div>
+      </section>
+
+      {/* THREE PILLARS */}
+      <Section pad="112px 40px">
+        <div style={{ maxWidth: 760, marginBottom: 56 }}>
+          <Eyebrow>How it works</Eyebrow>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 46, lineHeight: 1.08, letterSpacing: '-0.02em', marginTop: 18, fontWeight: 400 }}>
+            Built for the paperwork<br />that keeps cities running.
+          </div>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, background: 'var(--rule)', border: '1px solid var(--rule)', borderRadius: 6, overflow: 'hidden' }}>
+          {[
+            ['01', 'Assemble', 'Invoices, timesheets, backup documentation and ledger exports consolidated into a single agency-ready submission.'],
+            ['02', 'Validate', 'Line items reconciled against contract schedules, unit caps, and allowable cost rules — before anyone reviews.'],
+            ['03', 'Submit', 'Filed through the right agency channel with a full audit trail. Tracked from receipt to payment.'],
+          ].map(([n, t, d]) => (
+            <div key={n} style={{ background: 'var(--paper)', padding: '40px 32px 44px' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--shu)', marginBottom: 28 }}>{n}</div>
+              <div style={{ fontSize: 22, fontWeight: 500, letterSpacing: '-0.02em', marginBottom: 10 }}>{t}</div>
+              <div style={{ fontSize: 14.5, lineHeight: 1.55, color: 'var(--ash)' }}>{d}</div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* VALIDATION DETAIL */}
+      <section style={{ padding: '96px 40px', background: 'var(--kinari)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, alignItems: 'center' }}>
+          <div>
+            <Eyebrow>Validation</Eyebrow>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 40, lineHeight: 1.1, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400, marginBottom: 20 }}>
+              Every line, reconciled against the contract that funds it.
+            </div>
+            <div style={{ fontSize: 16, color: 'var(--ash)', lineHeight: 1.55, maxWidth: 480 }}>
+              Shoken ingests your general ledger, timesheets, and source documents, then checks every line item against agency schedules, unit caps, allowable cost rules, and match requirements. What used to be a two-week desk audit happens in two minutes.
+            </div>
+            <div style={{ marginTop: 24 }}><Button variant="ghost">Read the validation spec <Arrow /></Button></div>
+          </div>
+          <div style={{ background: 'var(--paper)', border: '1px solid var(--rule)', borderRadius: 8, padding: 22, fontFamily: 'var(--font-mono)', fontSize: 12.5, lineHeight: 1.8, boxShadow: 'var(--shadow-raise)' }}>
+            <div style={{ color: 'var(--stone)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 14 }}>INV-2026-0421 · Validation trace</div>
+            {[
+              ['✓', 'Contract C-42181 · active', 'var(--moss)'],
+              ['✓', 'Case mgmt rate · $48/hr matches schedule', 'var(--moss)'],
+              ['✓', 'Unit cap · 1,004 / 1,200 units YTD', 'var(--moss)'],
+              ['✓', 'Fringe rate · 28.4% within bound', 'var(--moss)'],
+              ['!', 'Indirect · 9.8% exceeds 9.5% cap', 'var(--shu)'],
+              ['✓', 'Match · 25% cash + 5% in-kind', 'var(--moss)'],
+              ['✓', 'Backup · 47 / 47 timesheets attached', 'var(--moss)'],
+              ['→', 'Routing DHS.finance.reimbursement@', 'var(--char)'],
+              ['✓', 'Submitted · 14:02:11 EDT', 'var(--ink)'],
+            ].map(([mark, line, col], i) => (
+              <div key={i} style={{ display: 'flex', gap: 14, color: col }}>
+                <span style={{ color: 'var(--stone)', width: 12 }}>{mark}</span>
+                <span>{line}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TWO-SIDED */}
+      <Section pad="112px 40px">
+        <div style={{ maxWidth: 760, marginBottom: 56 }}>
+          <Eyebrow>Two sides of one ledger</Eyebrow>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 46, lineHeight: 1.08, letterSpacing: '-0.02em', marginTop: 18, fontWeight: 400 }}>
+            Designed for the people<br />who sign the invoices.
+          </div>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
+          {[
+            {
+              who: 'For nonprofits',
+              t: 'Close your month on the second, not the twentieth.',
+              d: 'Upload your ledger. Shoken assembles the invoice, validates every line, and submits it through the right agency channel. Your program officers stop chasing paper.',
+              href: 'nonprofits.html',
+            },
+            {
+              who: 'For agencies',
+              t: 'Review claims that have already been checked.',
+              d: 'Every invoice arrives pre-validated against your own contract schedules. Approve in a click, or return with a specific line-item reason. Audit with a full trace.',
+              href: 'agencies.html',
+            },
+          ].map((card) => (
+            <a key={card.who} href={card.href} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div style={{
+                border: '1px solid var(--rule)', borderRadius: 8, padding: '36px 32px 32px',
+                background: 'var(--paper)', display: 'flex', flexDirection: 'column', height: '100%',
+                transition: 'box-shadow 200ms var(--ease)',
+              }}>
+                <Eyebrow>{card.who}</Eyebrow>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 400, letterSpacing: '-0.02em', lineHeight: 1.15, margin: '18px 0 14px' }}>
+                  {card.t}
+                </div>
+                <div style={{ fontSize: 14.5, color: 'var(--ash)', lineHeight: 1.55 }}>{card.d}</div>
+                <div style={{ marginTop: 'auto', paddingTop: 20, fontSize: 13.5, color: 'var(--shu)', fontWeight: 500 }}>Learn more →</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </Section>
+
+      {/* INTEGRATIONS */}
+      <Section pad="96px 40px">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 64, alignItems: 'center' }}>
+          <div>
+            <Eyebrow>Integrations</Eyebrow>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 40, lineHeight: 1.1, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400, marginBottom: 20 }}>
+              Speaks every system the agencies run on.
+            </div>
+            <div style={{ fontSize: 15.5, color: 'var(--ash)', lineHeight: 1.55, maxWidth: 480 }}>
+              Ingest from QuickBooks, Sage Intacct, NetSuite, Blackbaud Financial Edge, ADP, Paychex. Submit to PASSPort, CityShare, SFS, and the twelve other agency portals human services contracts actually live in.
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, background: 'var(--rule)', border: '1px solid var(--rule)', borderRadius: 6, overflow: 'hidden' }}>
+            {['QuickBooks', 'Sage Intacct', 'NetSuite', 'Blackbaud', 'ADP', 'Paychex', 'PASSPort', 'CityShare', 'SFS'].map((n) => (
+              <div key={n} style={{ background: 'var(--paper)', padding: '20px 16px', fontSize: 13, fontWeight: 500, letterSpacing: '-0.01em', color: 'var(--char)' }}>{n}</div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* CTA */}
+      <section style={{ padding: '120px 40px', textAlign: 'center', borderTop: '1px solid var(--rule)' }}>
+        <div style={{ maxWidth: 720, margin: '0 auto' }}>
+          <Eyebrow>Request access</Eyebrow>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 58, lineHeight: 1.05, letterSpacing: '-0.03em', margin: '22px 0 20px', fontWeight: 400 }}>
+            Close the reimbursement cycle.
+          </div>
+          <div style={{ fontSize: 17, color: 'var(--ash)', maxWidth: 520, margin: '0 auto 32px', lineHeight: 1.55 }}>
+            Shoken is onboarding a limited cohort of agencies and nonprofits in 2026.
+          </div>
+          <div style={{ display: 'inline-flex', gap: 12 }}>
+            <Button size="lg">Request access <Arrow /></Button>
+            <Button variant="secondary" size="lg">Contact sales</Button>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Home />);
+</script>
+</body>
+</html>

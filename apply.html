@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Apply — Shoken</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label {
+    font-size: 11px; color: var(--stone); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+  }
+  .field input {
+    font-family: var(--font-sans); font-size: 15px; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 4px;
+    padding: 12px 14px; outline: none;
+    transition: border-color 120ms var(--ease), box-shadow 120ms var(--ease);
+  }
+  .field input:focus {
+    border-color: var(--shu); box-shadow: 0 0 0 3px rgba(194,56,47,0.1);
+  }
+  .file-drop {
+    font-family: var(--font-sans); font-size: 14px;
+    border: 1.5px dashed var(--fog); border-radius: 4px;
+    padding: 24px 16px; background: var(--kinari);
+    color: var(--ash); cursor: pointer; text-align: center;
+    transition: border-color 120ms var(--ease), color 120ms var(--ease);
+  }
+  .file-drop:hover { border-color: var(--shu); color: var(--ink); }
+  .file-drop input { display: none; }
+  .file-drop.has-file { border-style: solid; border-color: var(--moss); color: var(--ink); background: var(--paper); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="Brand.jsx"></script>
+<script type="text/babel">
+const { Nav, Footer, Button, Arrow, Eyebrow, Section } = window;
+
+function Apply() {
+  const params = new URLSearchParams(window.location.search);
+  const role = params.get('role') || 'Founding Engineer';
+  const [fileName, setFileName] = React.useState('');
+  const [submitted, setSubmitted] = React.useState(false);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <div>
+      <Nav current="careers.html" />
+
+      <section style={{ padding: '72px 40px 56px', borderBottom: '1px solid var(--rule)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <a href="careers.html" style={{ fontSize: 13, color: 'var(--ash)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: 24, whiteSpace: 'nowrap' }}>
+            ← All roles
+          </a>
+          <Eyebrow>Application</Eyebrow>
+          <h1 style={{
+            fontFamily: 'var(--font-display)', fontSize: 56, lineHeight: 1.08,
+            fontWeight: 400, letterSpacing: '-0.03em', margin: '18px 0 20px', maxWidth: 760,
+          }}>
+            {submitted ? 'Application received.' : `Apply — ${role}`}
+          </h1>
+          {!submitted && (
+            <p style={{ fontSize: 17, color: 'var(--ash)', lineHeight: 1.5, maxWidth: 580, margin: 0 }}>
+              Three fields. A human reads every application. Expect a reply within a week.
+            </p>
+          )}
+        </div>
+      </section>
+
+      {submitted ? (
+        <Section pad="64px 40px 120px">
+          <div style={{ maxWidth: 640, margin: '0 auto', padding: '48px 40px', background: 'var(--paper)', border: '1px solid var(--rule)', borderRadius: 8, textAlign: 'center' }}>
+            <div style={{ width: 48, height: 48, borderRadius: 24, background: 'var(--shu)', margin: '0 auto 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--paper)', fontSize: 22 }}>✓</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, letterSpacing: '-0.02em', marginBottom: 14, lineHeight: 1.2 }}>
+              We received your application for {role}.
+            </div>
+            <div style={{ fontSize: 15, color: 'var(--ash)', lineHeight: 1.6, maxWidth: 460, margin: '0 auto 28px' }}>
+              A member of the team will read it carefully and get back to you within a week. If the role has moved since you applied, we will tell you.
+            </div>
+            <Button href="careers.html" variant="secondary">See other roles</Button>
+          </div>
+        </Section>
+      ) : (
+        <Section pad="56px 40px 120px">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 72 }}>
+            <div>
+              <div style={{ position: 'sticky', top: 88 }}>
+                <div style={{ fontSize: 11, color: 'var(--stone)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 14 }}>Role</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, letterSpacing: '-0.02em', lineHeight: 1.15, marginBottom: 16 }}>{role}</div>
+                <div style={{ fontSize: 13.5, color: 'var(--ash)', lineHeight: 1.6, marginBottom: 24 }}>
+                  New York, NY · In-office
+                </div>
+                <div style={{ paddingTop: 20, borderTop: '1px solid var(--rule)', fontSize: 13, color: 'var(--ash)', lineHeight: 1.6 }}>
+                  Questions? Write to <a href="mailto:jobs@shoken.co" style={{ color: 'var(--ink)', textUnderlineOffset: 3 }}>jobs@shoken.co</a>.
+                </div>
+              </div>
+            </div>
+
+            <form onSubmit={onSubmit} style={{ background: 'var(--paper)', border: '1px solid var(--rule)', borderRadius: 8, padding: '40px 40px 36px', boxShadow: 'var(--shadow-raise)' }}>
+              <div className="field" style={{ marginBottom: 22 }}>
+                <label>Email</label>
+                <input required type="email" placeholder="your.name@example.com" />
+              </div>
+
+              <div className="field" style={{ marginBottom: 22 }}>
+                <label>LinkedIn</label>
+                <input required type="url" placeholder="https://linkedin.com/in/…" />
+              </div>
+
+              <div className="field" style={{ marginBottom: 32 }}>
+                <label>Resume</label>
+                <label className={`file-drop ${fileName ? 'has-file' : ''}`}>
+                  <input type="file" accept=".pdf,.doc,.docx" onChange={(e) => setFileName(e.target.files[0]?.name || '')} required />
+                  {fileName ? (
+                    <span><strong style={{ color: 'var(--ink)', fontWeight: 500 }}>{fileName}</strong> · click to replace</span>
+                  ) : (
+                    <span>Click to upload · PDF, DOC, or DOCX</span>
+                  )}
+                </label>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 24, borderTop: '1px solid var(--rule)' }}>
+                <div style={{ fontSize: 12, color: 'var(--stone)', fontFamily: 'var(--font-mono)' }}>
+                  We reply within one week.
+                </div>
+                <button type="submit" style={{
+                  background: 'var(--ink)', color: 'var(--paper)', border: 'none',
+                  padding: '12px 22px', fontSize: 14, fontWeight: 500,
+                  fontFamily: 'var(--font-sans)', borderRadius: 4, cursor: 'pointer',
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                }}>
+                  Submit application <Arrow />
+                </button>
+              </div>
+            </form>
+          </div>
+        </Section>
+      )}
+
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Apply />);
+</script>
+</body>
+</html>

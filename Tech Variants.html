@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shoken — Tech Variants (Modern Meiji)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #f0eee9; font-family: "Inter Tight", sans-serif; }
+  * { box-sizing: border-box; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="TechVariants.jsx"></script>
+
+<script type="text/babel">
+
+function Frame({ bg = '#FBF6EB', children, padding = 20 }) {
+  return (
+    <div style={{
+      width: '100%', height: '100%', background: bg, padding,
+      boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center',
+      position: 'relative', overflow: 'hidden',
+    }}>{children}</div>
+  );
+}
+
+function Principle({ title, kicker, children, bg = '#FDFAF2', fg = '#0B0A08', mark }) {
+  return (
+    <div style={{
+      width: '100%', height: '100%', background: bg, color: fg, padding: 26,
+      boxSizing: 'border-box', fontFamily: '"Inter Tight", sans-serif',
+      display: 'flex', flexDirection: 'column', gap: 14,
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ fontSize: 10, letterSpacing: '0.22em', textTransform: 'uppercase', opacity: 0.55 }}>{kicker}</div>
+        {mark}
+      </div>
+      <div style={{
+        fontFamily: '"Source Serif 4", Georgia, serif',
+        fontSize: 24, lineHeight: 1.15, fontWeight: 400, letterSpacing: '-0.015em',
+      }}>{title}</div>
+      <div style={{ fontSize: 13, lineHeight: 1.5, opacity: 0.8 }}>{children}</div>
+      <div style={{ flex: 1 }} />
+      <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 10, opacity: 0.5 }}>shoken · variant</div>
+    </div>
+  );
+}
+
+const { DesignCanvas, DCSection, DCArtboard } = window;
+
+function App() {
+  return (
+    <DesignCanvas>
+
+      {/* ═════════ C1 — LINEAR/VERCEL ═════════ */}
+      <DCSection id="c1" title="C1 · Linear / Vercel" subtitle="Tri-petal mark + tight geometric sans. Software-company crisp.">
+        <DCArtboard id="c1-principle" label="Principle" width={420} height={320}>
+          <Principle kicker="Variant C1" title="Crisp. Geometric. Software-first." bg={TECH.paper} mark={<C1_MarkSVG size={32} />}>
+            The plum-blossom simplified to three overlapping circles and a seal dot. Sans wordmark tuned tight. Reads like a well-run tool company — Linear, Vercel, Height.
+          </Principle>
+        </DCArtboard>
+        <DCArtboard id="c1-wordmark" label="Wordmark" width={420} height={180}>
+          <Frame bg={TECH.paper}><C1_Wordmark size={44} /></Frame>
+        </DCArtboard>
+        <DCArtboard id="c1-wordmark-dark" label="Wordmark · on ink" width={420} height={180}>
+          <Frame bg={TECH.ink}><C1_Wordmark size={44} dark={true} /></Frame>
+        </DCArtboard>
+        <DCArtboard id="c1-mark-scales" label="Mark · scales" width={420} height={180}>
+          <Frame bg={TECH.paper}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 28 }}>
+              <C1_MarkSVG size={88} /><C1_MarkSVG size={56} /><C1_MarkSVG size={36} /><C1_MarkSVG size={22} /><C1_MarkSVG size={14} />
+            </div>
+          </Frame>
+        </DCArtboard>
+        <DCArtboard id="c1-app-icon" label="App icon" width={180} height={180}>
+          <Frame bg={TECH.paper}><C1_AppIcon size={110} /></Frame>
+        </DCArtboard>
+        <DCArtboard id="c1-app-shell" label="Workspace" width={560} height={340}>
+          <C1_AppShell />
+        </DCArtboard>
+      </DCSection>
+
+      {/* ═════════ C2 — DEV-TOOL / TERMINAL ═════════ */}
+      <DCSection id="c2" title="C2 · Dev-tool" subtitle="Pixel-grid mark + monospace wordmark. Warp, Railway, Linear dev mode.">
+        <DCArtboard id="c2-principle" label="Principle" width={420} height={320}>
+          <Principle kicker="Variant C2" title="For operators who live in the terminal." bg={TECH.paper} mark={<C2_MarkSVG size={32} />}>
+            The mark as pixel-grid — plum-blossom reconstructed on a 5×5 matrix. Monospace wordmark. Feels like infrastructure you'd pipe a JSON into. Warp / Railway / fly.io register.
+          </Principle>
+        </DCArtboard>
+        <DCArtboard id="c2-wordmark" label="Wordmark" width={420} height={180}>
+          <Frame bg={TECH.paper}><C2_Wordmark size={44} /></Frame>
+        </DCArtboard>
+        <DCArtboard id="c2-wordmark-dark" label="Wordmark · on ink" width={420} height={180}>
+          <Frame bg={TECH.ink}><C2_Wordmark size={44} dark={true} /></Frame>
+        </DCArtboard>
+        <DCArtboard id="c2-mark-scales" label="Mark · scales" width={420} height={180}>
+          <Frame bg={TECH.paper}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 28 }}>
+              <C2_MarkSVG size={88} /><C2_MarkSVG size={56} /><C2_MarkSVG size={36} /><C2_MarkSVG size={22} /><C2_MarkSVG size={14} />
+            </div>
+          </Frame>
+        </DCArtboard>
+        <DCArtboard id="c2-app-icon" label="App icon" width={180} height={180}>
+          <Frame bg={TECH.paper}><C2_AppIcon size={110} /></Frame>
+        </DCArtboard>
+        <DCArtboard id="c2-terminal" label="CLI" width={480} height={260}>
+          <C2_Terminal />
+        </DCArtboard>
+      </DCSection>
+
+      {/* ═════════ C3 — DARK / GLOWING ═════════ */}
+      <DCSection id="c3" title="C3 · Dark & Glowing" subtitle="Dark-first surfaces, ambient vermilion glow. Arc, Raycast, Vercel-dark.">
+        <DCArtboard id="c3-principle" label="Principle" width={420} height={320}>
+          <Principle kicker="Variant C3" title="Confident in the dark." bg={TECH.ink} fg={TECH.kinari} mark={<C3_MarkSVG size={32} />}>
+            Dark-first — the interface glows rather than prints. Vermilion pulled into radial gradients and indicators. Modern premium SaaS register (Arc, Raycast, Linear dark).
+          </Principle>
+        </DCArtboard>
+        <DCArtboard id="c3-wordmark" label="Wordmark" width={420} height={200}>
+          <Frame bg={TECH.ink}><C3_Wordmark size={46} /></Frame>
+        </DCArtboard>
+        <DCArtboard id="c3-wordmark-light" label="Wordmark · on light" width={420} height={200}>
+          <Frame bg={TECH.paper}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 16 }}>
+              <C3_MarkSVG size={46} />
+              <div style={{ fontFamily: '"Inter Tight", sans-serif', fontSize: 32, fontWeight: 600, color: TECH.ink, letterSpacing: '-0.035em' }}>Shoken</div>
+            </div>
+          </Frame>
+        </DCArtboard>
+        <DCArtboard id="c3-mark-scales" label="Mark · scales" width={420} height={180}>
+          <Frame bg={TECH.ink}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 28 }}>
+              <C3_MarkSVG size={88} /><C3_MarkSVG size={56} /><C3_MarkSVG size={36} /><C3_MarkSVG size={22} /><C3_MarkSVG size={14} glow={false} />
+            </div>
+          </Frame>
+        </DCArtboard>
+        <DCArtboard id="c3-app-icon" label="App icon" width={180} height={180}>
+          <Frame bg={TECH.paper}><C3_AppIcon size={110} /></Frame>
+        </DCArtboard>
+        <DCArtboard id="c3-dashboard" label="Dashboard card" width={420} height={260}>
+          <C3_DashCard />
+        </DCArtboard>
+      </DCSection>
+
+      {/* ═════════ C4 — STRIPE / MERCURY ═════════ */}
+      <DCSection id="c4" title="C4 · Stripe / Mercury" subtitle="Asymmetric interlocking mark + refined sans. Premium fintech polish.">
+        <DCArtboard id="c4-principle" label="Principle" width={420} height={320}>
+          <Principle kicker="Variant C4" title="The polish of premium fintech." bg={TECH.kinari} mark={<C4_MarkSVG size={32} />}>
+            Asymmetric overlapping mark with a vermilion seal at the union. Sans wordmark with generous negative tracking. Reads like Stripe, Mercury, Ramp — serious money, quiet surface.
+          </Principle>
+        </DCArtboard>
+        <DCArtboard id="c4-wordmark" label="Wordmark" width={420} height={180}>
+          <Frame bg={TECH.kinari}><C4_Wordmark size={44} /></Frame>
+        </DCArtboard>
+        <DCArtboard id="c4-wordmark-dark" label="Wordmark · on ink" width={420} height={180}>
+          <Frame bg={TECH.ink}><C4_Wordmark size={44} dark={true} /></Frame>
+        </DCArtboard>
+        <DCArtboard id="c4-mark-scales" label="Mark · scales" width={420} height={180}>
+          <Frame bg={TECH.kinari}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 28 }}>
+              <C4_MarkSVG size={88} /><C4_MarkSVG size={56} /><C4_MarkSVG size={36} /><C4_MarkSVG size={22} /><C4_MarkSVG size={14} />
+            </div>
+          </Frame>
+        </DCArtboard>
+        <DCArtboard id="c4-app-icon" label="App icon" width={180} height={180}>
+          <Frame bg={TECH.kinari}><C4_AppIcon size={110} /></Frame>
+        </DCArtboard>
+        <DCArtboard id="c4-hero" label="Marketing hero" width={560} height={340}>
+          <C4_MarketingHero />
+        </DCArtboard>
+      </DCSection>
+
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
