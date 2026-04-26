@@ -5,6 +5,7 @@ function HeroProductFrame() {
     rule: 'var(--rule)', kinari: 'var(--kinari)', paper: 'var(--paper)',
     ink: 'var(--ink)', ash: 'var(--ash)', stone: 'var(--stone)',
     shu: 'var(--shu)', gold: 'var(--gold)', char: 'var(--char)', fog: 'var(--fog)',
+    mizu: 'var(--mizu)',
   };
   return (
     <div style={{
@@ -22,7 +23,7 @@ function HeroProductFrame() {
         </div>
       </div>
       <div style={{ display: 'flex', minHeight: 460 }}>
-        <div style={{ width: 208, borderRight: `1px solid ${T.rule}`, background: T.kinari, padding: 16 }}>
+        <div style={{ width: 240, flexShrink: 0, borderRight: `1px solid ${T.rule}`, background: T.kinari, padding: 16 }}>
           <div style={{ fontSize: 10, color: T.stone, textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 10 }}>Workspaces</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 8px', background: T.paper, borderRadius: 4, fontSize: 13, fontWeight: 500, marginBottom: 4 }}>
             <div style={{ width: 6, height: 6, borderRadius: 3, background: T.shu }} />
@@ -31,57 +32,67 @@ function HeroProductFrame() {
           <div style={{ padding: '6px 8px', fontSize: 13, color: T.ash }}>DOE · Afterschool</div>
           <div style={{ padding: '6px 8px', fontSize: 13, color: T.ash }}>DHR · Head Start</div>
           <div style={{ fontSize: 10, color: T.stone, textTransform: 'uppercase', letterSpacing: '0.12em', marginTop: 22, marginBottom: 10 }}>Views</div>
-          {['Inbox', 'In review', 'Validated', 'Paid', 'Returned'].map((v, i) => (
+          {[
+            ['Screened', 12],
+            ['In review', 4],
+            ['Returned', 2],
+            ['YTD Approved', 214],
+          ].map(([v, count], i) => (
             <div key={v} style={{
               padding: '6px 8px', fontSize: 13,
               color: i === 1 ? T.ink : T.ash, fontWeight: i === 1 ? 500 : 400,
               borderRadius: 4, background: i === 1 ? T.paper : 'transparent',
               display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              whiteSpace: 'nowrap',
             }}>
-              <span>{v}</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: T.stone }}>{[12, 4, 8, 127, 2][i]}</span>
+              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{v}</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: T.stone, marginLeft: 8 }}>{count}</span>
             </div>
           ))}
         </div>
         <div style={{ flex: 1, padding: '22px 26px' }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 4 }}>
-            <div style={{ fontSize: 22, fontWeight: 500, letterSpacing: '-0.02em' }}>In review</div>
-            <div style={{ fontSize: 12, color: T.stone, fontFamily: 'var(--font-mono)' }}>4 invoices · $612,800.00</div>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 16, marginBottom: 4 }}>
+            <div style={{ fontSize: 22, fontWeight: 500, letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>Active invoices</div>
+            <div style={{ fontSize: 12, color: T.stone, fontFamily: 'var(--font-mono)', whiteSpace: 'nowrap' }}>4 invoices · $612,800.00</div>
           </div>
-          <div style={{ fontSize: 13, color: T.ash, marginBottom: 20 }}>Validated by Shoken. Awaiting agency action.</div>
+          <div style={{ fontSize: 13, color: T.ash, marginBottom: 20 }}>Shoken screened. Agency to review and approve.</div>
           <div style={{ border: `1px solid ${T.rule}`, borderRadius: 6, overflow: 'hidden' }}>
             <div style={{
-              display: 'grid', gridTemplateColumns: '90px 1fr 120px 88px 96px',
-              padding: '10px 14px', fontSize: 11, color: T.stone,
-              textTransform: 'uppercase', letterSpacing: '0.08em',
+              display: 'grid', gridTemplateColumns: '110px 1fr 130px 76px 110px',
+              padding: '10px 14px', fontSize: 10.5, color: T.stone,
+              textTransform: 'uppercase', letterSpacing: '0.06em',
               background: T.kinari, borderBottom: `1px solid ${T.rule}`,
+              gap: 12, whiteSpace: 'nowrap',
             }}>
               <span>Invoice</span><span>Organization</span>
-              <span style={{ textAlign: 'right' }}>Amount</span>
+              <span style={{ textAlign: 'right' }}>Invoiced</span>
               <span>Submitted</span>
               <span style={{ textAlign: 'right' }}>Status</span>
             </div>
             {[
-              ['0421', 'BronxWorks', '$128,450.00', '22 Apr', 'Validated', T.gold],
-              ['0420', 'Henry Street Settlement', '$84,200.00', '22 Apr', 'Awaiting', T.stone],
-              ['0419', 'Good Shepherd Services', '$192,100.00', '21 Apr', 'Returned', T.shu],
-              ['0418', 'Phipps Houses', '$208,050.00', '21 Apr', 'Validated', T.gold],
+              // Per-org sequence numbers (each org has its own counter)
+              ['BXW-0421', 'Org A · Bronx', '$128,450.00', '22 Apr', 'Screened', T.gold],
+              ['HSS-0184', 'Org B · Lower East Side', '$84,200.00', '22 Apr', 'In review', T.mizu],
+              ['GSS-0312', 'Org C · Citywide', '$192,100.00', '21 Apr', 'Returned', T.shu],
+              ['PHS-0097', 'Org D · Bronx & Manhattan', '$208,050.00', '21 Apr', 'Screened', T.gold],
             ].map(([id, org, amt, d, stat, col], i, arr) => (
               <div key={id} style={{
-                display: 'grid', gridTemplateColumns: '90px 1fr 120px 88px 96px',
+                display: 'grid', gridTemplateColumns: '110px 1fr 130px 76px 110px',
                 padding: '13px 14px', fontSize: 13, alignItems: 'center',
                 borderBottom: i < arr.length - 1 ? `1px solid ${T.rule}` : 'none',
                 background: i === 0 ? T.kinari : T.paper,
+                gap: 12, whiteSpace: 'nowrap',
               }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: T.char }}>INV-{id}</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: T.char }}>{id}</span>
                 <span style={{ color: T.ink }}>{org}</span>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, textAlign: 'right' }}>{amt}</span>
                 <span style={{ color: T.ash, fontSize: 12 }}>{d}</span>
                 <span style={{
                   fontSize: 11, fontWeight: 500, textAlign: 'right', justifySelf: 'end',
                   display: 'inline-flex', alignItems: 'center', gap: 6, color: col,
+                  whiteSpace: 'nowrap',
                 }}>
-                  <span style={{ width: 6, height: 6, borderRadius: 3, background: col }} />
+                  <span style={{ width: 6, height: 6, borderRadius: 3, background: col, flexShrink: 0 }} />
                   {stat}
                 </span>
               </div>
@@ -89,14 +100,19 @@ function HeroProductFrame() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1, background: T.rule, border: `1px solid ${T.rule}`, borderRadius: 6, marginTop: 20, overflow: 'hidden' }}>
             {[
-              ['Cycle time', '2m 14s', 'median'],
-              ['Accuracy', '99.7%', 'first-pass'],
-              ['In flight', '$4.2M', '12 invoices'],
-              ['Paid YTD', '$38.4M', '214 invoices'],
-            ].map(([k, v, sub]) => (
-              <div key={k} style={{ background: T.paper, padding: '14px 16px' }}>
-                <div style={{ fontSize: 11, color: T.stone, letterSpacing: '0.08em', textTransform: 'uppercase' }}>{k}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 20, fontWeight: 500, marginTop: 4 }}>{v}</div>
+              ['Cycle time', '2m 14s', '', 'median'],
+              ['Accuracy', '99.7%', '', 'first-pass'],
+              ['In flight', '12', '$4.2M', 'invoices'],
+              ['Approved YTD', '214', '$38.4M', 'invoices'],
+            ].map(([k, primary, secondary, sub]) => (
+              <div key={k} style={{ background: T.paper, padding: '14px 16px', minWidth: 0 }}>
+                <div style={{ fontSize: 10.5, color: T.stone, letterSpacing: '0.06em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{k}</div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 4, whiteSpace: 'nowrap' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 19, fontWeight: 700, color: T.ink, letterSpacing: '-0.01em' }}>{primary}</div>
+                  {secondary && (
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, fontWeight: 400, color: T.ash }}>{secondary}</div>
+                  )}
+                </div>
                 <div style={{ fontSize: 11, color: T.ash, marginTop: 2 }}>{sub}</div>
               </div>
             ))}

@@ -19,35 +19,35 @@ const { Nav, Footer, Button, Arrow, Eyebrow, Section, PageHeader } = window;
 
 function QueueMock() {
   const rows = [
-    ['0421', 'BronxWorks', 'C-42181', '$128,450.00', 'Ready', 'var(--gold)'],
-    ['0420', 'Henry Street Settlement', 'C-31902', '$84,200.00', 'Ready', 'var(--gold)'],
-    ['0419', 'Good Shepherd Services', 'C-44127', '$192,100.00', 'Flagged', 'var(--shu)'],
-    ['0418', 'Phipps Houses', 'C-42181', '$208,050.00', 'Ready', 'var(--gold)'],
-    ['0417', 'Safe Horizon', 'C-22408', '$61,900.00', 'Ready', 'var(--gold)'],
+    ['BXW-0421', 'Org A · Bronx', 'C-21184', '$128,450.00', 'Screened', 'var(--gold)'],
+    ['HSS-0184', 'Org B · Lower East Side', 'C-19023', '$84,200.00', 'Screened', 'var(--gold)'],
+    ['GSS-0312', 'Org C · Citywide', 'C-44127', '$192,100.00', 'Flagged', 'var(--shu)'],
+    ['PHS-0097', 'Org D · Bronx & Manhattan', 'C-21184', '$208,050.00', 'Screened', 'var(--gold)'],
+    ['SHZ-0241', 'Org E · Citywide', 'C-22408', '$61,900.00', 'Screened', 'var(--gold)'],
   ];
   return (
     <div style={{ border: '1px solid var(--rule)', borderRadius: 8, background: 'var(--paper)', boxShadow: 'var(--shadow-hero)', overflow: 'hidden' }}>
       <div style={{ padding: '14px 20px', borderBottom: '1px solid var(--rule)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--kinari)' }}>
         <div>
-          <div style={{ fontSize: 15, fontWeight: 500 }}>Review queue · DHS Finance</div>
+          <div style={{ fontSize: 15, fontWeight: 500 }}>Review queue · Agency Finance</div>
           <div style={{ fontSize: 12, color: 'var(--stone)', fontFamily: 'var(--font-mono)' }}>5 invoices · $674,700.00 · SLA median 1d 6h</div>
         </div>
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--stone)' }}>Thu 22 Apr · 14:02 EDT</div>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '92px 1fr 108px 130px 104px 108px', padding: '10px 20px', fontSize: 11, color: 'var(--stone)', textTransform: 'uppercase', letterSpacing: '0.08em', borderBottom: '1px solid var(--rule)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '110px 1fr 108px 130px 104px 108px', padding: '10px 20px', fontSize: 11, color: 'var(--stone)', textTransform: 'uppercase', letterSpacing: '0.08em', borderBottom: '1px solid var(--rule)', gap: 12, whiteSpace: 'nowrap' }}>
         <span>Invoice</span><span>Nonprofit</span><span>Contract</span><span style={{ textAlign: 'right' }}>Amount</span><span style={{ textAlign: 'right' }}>Status</span><span style={{ textAlign: 'right' }}>Action</span>
       </div>
       {rows.map(([id, org, con, amt, stat, col], i) => (
-        <div key={id} style={{ display: 'grid', gridTemplateColumns: '92px 1fr 108px 130px 104px 108px', padding: '14px 20px', fontSize: 13, alignItems: 'center', borderBottom: i < rows.length - 1 ? '1px solid var(--rule)' : 'none' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--char)' }}>INV-{id}</span>
+        <div key={id} style={{ display: 'grid', gridTemplateColumns: '110px 1fr 108px 130px 104px 108px', padding: '14px 20px', fontSize: 13, alignItems: 'center', borderBottom: i < rows.length - 1 ? '1px solid var(--rule)' : 'none', gap: 12, whiteSpace: 'nowrap' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--char)' }}>{id}</span>
           <span>{org}</span>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ash)' }}>{con}</span>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, textAlign: 'right' }}>{amt}</span>
-          <span style={{ color: col, fontSize: 11, fontWeight: 500, textAlign: 'right', display: 'inline-flex', alignItems: 'center', gap: 6, justifySelf: 'end' }}>
-            <span style={{ width: 6, height: 6, borderRadius: 3, background: col }} />{stat}
+          <span style={{ color: col, fontSize: 11, fontWeight: 500, textAlign: 'right', display: 'inline-flex', alignItems: 'center', gap: 6, justifySelf: 'end', whiteSpace: 'nowrap' }}>
+            <span style={{ width: 6, height: 6, borderRadius: 3, background: col, flexShrink: 0 }} />{stat}
           </span>
           <span style={{ textAlign: 'right' }}>
-            <span style={{ fontSize: 12, color: 'var(--shu)', fontWeight: 500 }}>Approve →</span>
+            <span style={{ fontSize: 12, color: 'var(--shu)', fontWeight: 500 }}>Review →</span>
           </span>
         </div>
       ))}
@@ -55,19 +55,34 @@ function QueueMock() {
   );
 }
 
-function Benefits() {
-  const rows = [
-    ['Pre-validated on arrival', 'Every invoice has already passed Shoken\'s checks against your schedule. Reviewers spend their time on judgment calls, not arithmetic.'],
-    ['Structured return reasons', 'Reject at the line, not the invoice. Cite the rule. Shoken round-trips the correction to the nonprofit\'s source system.'],
-    ['Portfolio visibility', 'See every contract, every nonprofit, every dollar in flight — across agencies, across programs, across fiscal years.'],
-    ['Complete audit trail', 'Each decision signed and timestamped. Every line tied to the contract clause that authorizes it. Exportable for OIG, GAO, and state audits.'],
-  ];
+function Operations() {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 1, background: 'var(--rule)', border: '1px solid var(--rule)', borderRadius: 6 }}>
-      {rows.map(([t, d]) => (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, background: 'var(--rule)', border: '1px solid var(--rule)', borderRadius: 6 }}>
+      {[
+        ['Speed to payment', 'Cleaner invoices on arrival compress review cycles from weeks to days. Agencies meet statutory payment deadlines. Providers get paid faster.'],
+        ['Meet the mandate. Keep your team.', 'Contract portfolios keep expanding. Hiring can’t keep pace. Shoken absorbs the repetitive comparison work so every invoice gets the review it deserves, on time — and reviewers spend their hours on judgment calls, risk management, and provider relationships that require human expertise.'],
+        ['Every invoice, every status, right now.', 'Know which invoices are moving, which are stuck, and where bottlenecks form across the entire contract portfolio.'],
+      ].map(([t, d]) => (
         <div key={t} style={{ background: 'var(--paper)', padding: '36px 32px' }}>
           <div style={{ fontSize: 19, fontWeight: 500, letterSpacing: '-0.015em', marginBottom: 10 }}>{t}</div>
-          <div style={{ fontSize: 14.5, lineHeight: 1.55, color: 'var(--ash)' }}>{d}</div>
+          <div style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--ash)' }}>{d}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Strategy() {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, background: 'var(--rule)', border: '1px solid var(--rule)', borderRadius: 6 }}>
+      {[
+        ['A complete record. A clearer picture.', 'Every revision is detailed and time-stamped — a complete record for audit readiness. Aggregate data across contracts surfaces portfolio risks, common errors, and opportunities for provider training and education.'],
+        ['Better nonprofit experience. Stronger partnerships.', 'Automated invoice assembly. Faster reviews, real-time feedback, transparent audit trails. Your nonprofit partners spend more time on mission, less time on paperwork — and fewer emails in your inbox.'],
+        ['Institutional knowledge, encoded.', 'Your agency’s rules, allowability standards, and review criteria live in Shoken — not in a binder, not in a single reviewer’s head. New staff ramp up faster, transitions don’t create gaps, and rule updates are implemented systemically.'],
+      ].map(([t, d]) => (
+        <div key={t} style={{ background: 'var(--paper)', padding: '36px 32px' }}>
+          <div style={{ fontSize: 19, fontWeight: 500, letterSpacing: '-0.015em', marginBottom: 10 }}>{t}</div>
+          <div style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--ash)' }}>{d}</div>
         </div>
       ))}
     </div>
@@ -80,8 +95,8 @@ function Agencies() {
       <Nav current="agencies.html" />
       <PageHeader
         eyebrow="For agencies"
-        title="Review claims that have already been checked."
-        subtitle="Shoken is the pre-flight check between the nonprofit ledger and the agency finance office. What arrives in your queue has already been reconciled against your contract schedules." />
+        title="Shoken works before the review starts."
+        subtitle="When an invoice reaches your team, it has already been validated against the contract and agency rules. The agency’s job is to confirm, not to compare." />
 
       <Section pad="48px 40px 96px">
         <QueueMock />
@@ -90,44 +105,36 @@ function Agencies() {
       <section style={{ padding: '96px 40px', background: 'var(--kinari)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ maxWidth: 720, marginBottom: 48 }}>
-            <Eyebrow>What changes</Eyebrow>
+            <Eyebrow>What changes · operations</Eyebrow>
             <div style={{ fontFamily: 'var(--font-display)', fontSize: 44, lineHeight: 1.08, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400 }}>
               Less desk auditing.<br />More program oversight.
             </div>
           </div>
-          <Benefits />
+          <Operations />
         </div>
       </section>
 
       <Section pad="112px 40px">
-        <div style={{ maxWidth: 760, marginBottom: 48 }}>
-          <Eyebrow>Integrations</Eyebrow>
-          <div style={{ fontFamily: 'var(--font-display)', fontSize: 40, lineHeight: 1.1, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400 }}>
-            Works inside your existing filing system.
-          </div>
-          <div style={{ fontSize: 15.5, color: 'var(--ash)', lineHeight: 1.55, marginTop: 18, maxWidth: 620 }}>
-            Shoken submits through the channel your agency already uses. No new login for your staff. No parallel system of record.
+        <div style={{ maxWidth: 720, marginBottom: 48 }}>
+          <Eyebrow>What changes · strategy</Eyebrow>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 44, lineHeight: 1.08, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400 }}>
+            Higher throughput.<br />Deeper review.
           </div>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1, background: 'var(--rule)', border: '1px solid var(--rule)', borderRadius: 6, overflow: 'hidden' }}>
-          {['PASSPort', 'CityShare', 'NYS SFS', 'eCivis', 'Workday', 'Tyler ERP', 'Oracle PSFT', 'Direct submission'].map((n) => (
-            <div key={n} style={{ background: 'var(--paper)', padding: '22px 18px', fontSize: 13.5, fontWeight: 500 }}>{n}</div>
-          ))}
-        </div>
+        <Strategy />
       </Section>
 
       <section style={{ padding: '96px 40px', background: 'var(--ink)', color: 'var(--kinari)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48 }}>
           <div>
-            <Eyebrow color="var(--shu-bright)">Security & compliance</Eyebrow>
+            <Eyebrow color="var(--shu-bright)">For public sector</Eyebrow>
             <div style={{ fontFamily: 'var(--font-display)', fontSize: 40, lineHeight: 1.1, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400 }}>
-              Built for public sector.
+              Built for the institutions that fund human services.
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             {[
-              ['SOC 2 Type II', 'Audited annually. Report available under NDA.'],
-              ['FedRAMP-ready', 'Deployed on FedRAMP-authorized infrastructure.'],
+              ['SOC 2 Type 2', 'Actively underway.'],
               ['Data residency', 'State-hosted or in-region options available.'],
               ['Role-based access', 'Program officer, finance, treasurer, auditor, read-only.'],
               ['Full chain of custody', 'Every action logged with actor, timestamp, and contract ref.'],
@@ -147,7 +154,7 @@ function Agencies() {
             Pilot on one contract portfolio.
           </div>
           <div style={{ fontSize: 16.5, color: 'var(--ash)', marginBottom: 32 }}>
-            Start with one agency division. Expand when you're ready.
+            Start with one agency division. Expand when you’re ready.
           </div>
           <Button size="lg">Talk to our team <Arrow /></Button>
         </div>

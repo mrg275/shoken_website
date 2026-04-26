@@ -39,11 +39,10 @@ function Wordmark({ size = 22, dark = false }) {
 // ══════════════════════════════════════════════════════════════
 function Nav({ current }) {
   const links = [
-    ['Product', 'product.html'],
+    ['Solution', 'product.html'],
     ['Agencies', 'agencies.html'],
     ['Nonprofits', 'nonprofits.html'],
     ['Company', 'company.html'],
-    ['Join us', 'careers.html'],
   ];
   return (
     <nav style={{
@@ -162,22 +161,21 @@ function Badge({ children, tone = 'neutral' }) {
 // ══════════════════════════════════════════════════════════════
 function Footer() {
   const cols = [
-    ['Product', [['Platform', 'product.html'], ['Validation', 'product.html'], ['Integrations', 'product.html'], ['Security', '#']]],
-    ['Solutions', [['Agencies', 'agencies.html'], ['Nonprofits', 'nonprofits.html']]],
-    ['Company', [['About', 'company.html'], ['Careers', 'careers.html'], ['Contact', '#']]],
-    ['Legal', [['Privacy', '#'], ['Terms', '#'], ['Trust', '#']]],
+    ['Solution', [['Overview', 'product.html'], ['Agencies', 'agencies.html'], ['Nonprofits', 'nonprofits.html']]],
+    ['Company', [['About', 'company.html'], ['Contact', 'mailto:inquiry@agentshoken.com']]],
+    ['Legal', [['Privacy', '#'], ['Terms', '#']]],
   ];
   return (
     <footer style={{ borderTop: '1px solid var(--rule)', background: 'var(--kinari)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 40px 32px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr repeat(4, 1fr)', gap: 48 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr repeat(3, 1fr)', gap: 48 }}>
           <div>
             <Wordmark size={20} />
             <div style={{ fontSize: 13, color: 'var(--ash)', lineHeight: 1.55, marginTop: 16, maxWidth: 260 }}>
-              The ledger between mission and government.
+              The ledger between nonprofits and government.
             </div>
             <div style={{ fontSize: 11, color: 'var(--stone)', fontFamily: 'var(--font-mono)', marginTop: 20, letterSpacing: '0.02em' }}>
-              SOC 2 Type II · FedRAMP-ready
+              SOC 2 · actively underway
             </div>
           </div>
           {cols.map(([heading, items]) => (
@@ -195,7 +193,7 @@ function Footer() {
           fontSize: 11, color: 'var(--stone)', fontFamily: 'var(--font-mono)',
         }}>
           <span>© 2026 Shoken, Inc.</span>
-          <span>New York · Washington · Sacramento</span>
+          <span>New York, NY · inquiry@agentshoken.com</span>
           <span>Named for Empress Shōken · 昭憲皇太后</span>
         </div>
       </div>

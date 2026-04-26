@@ -55,7 +55,7 @@ function Home() {
             fontFamily: 'var(--font-display)', fontSize: 84, lineHeight: 1.05, fontWeight: 400,
             letterSpacing: '-0.03em', margin: '22px 0 56px', maxWidth: 920,
           }}>
-            The ledger between<br />mission and government.
+            The ledger between<br />nonprofits and government.
           </h1>
           <p style={{ fontSize: 20, lineHeight: 1.5, color: 'var(--ash)', maxWidth: 640, margin: '0 0 36px' }}>
             Shoken assembles and validates human services contract invoices for government approval and payment. Weeks of administrative work, compressed to minutes.
@@ -63,29 +63,27 @@ function Home() {
           <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 72 }}>
             <Button size="lg">Request access <Arrow /></Button>
             <Button variant="secondary" size="lg">See how it works</Button>
-            <div style={{ fontSize: 12, color: 'var(--stone)', marginLeft: 12, fontFamily: 'var(--font-mono)' }}>
-              SOC 2 · FedRAMP-ready
-            </div>
           </div>
           <HeroProductFrame />
         </div>
       </section>
 
-      {/* THREE PILLARS */}
+      {/* HOW SHOKEN WORKS — 4 steps */}
       <Section pad="112px 40px">
-        <div style={{ maxWidth: 760, marginBottom: 56 }}>
-          <Eyebrow>How it works</Eyebrow>
+        <div style={{ maxWidth: 820, marginBottom: 56 }}>
+          <Eyebrow>How Shoken works</Eyebrow>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 46, lineHeight: 1.08, letterSpacing: '-0.02em', marginTop: 18, fontWeight: 400 }}>
-            Built for the paperwork<br />that keeps cities running.
+            People stay. Paperwork goes.<br />Delays removed.
           </div>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, background: 'var(--rule)', border: '1px solid var(--rule)', borderRadius: 6, overflow: 'hidden' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1, background: 'var(--rule)', border: '1px solid var(--rule)', borderRadius: 6, overflow: 'hidden' }}>
           {[
-            ['01', 'Assemble', 'Invoices, timesheets, backup documentation and ledger exports consolidated into a single agency-ready submission.'],
-            ['02', 'Validate', 'Line items reconciled against contract schedules, unit caps, and allowable cost rules — before anyone reviews.'],
-            ['03', 'Submit', 'Filed through the right agency channel with a full audit trail. Tracked from receipt to payment.'],
+            ['01', 'Ingest', 'Nonprofit staff upload expenditure documentation — receipts, timesheets, proof of payment, and ledger exports.'],
+            ['02', 'Assemble', 'Shoken consolidates backup into agency-ready invoices for nonprofit approval.'],
+            ['03', 'Validate', 'Shoken matches nonprofit-approved invoices against contract budgets and agency rules — and addresses errors immediately with the provider.'],
+            ['04', 'Submit', 'Shoken forwards screened invoices, with audit trails, to agency teams for faster human review and payment approval.'],
           ].map(([n, t, d]) => (
-            <div key={n} style={{ background: 'var(--paper)', padding: '40px 32px 44px' }}>
+            <div key={n} style={{ background: 'var(--paper)', padding: '40px 28px 44px' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--shu)', marginBottom: 28 }}>{n}</div>
               <div style={{ fontSize: 22, fontWeight: 500, letterSpacing: '-0.02em', marginBottom: 10 }}>{t}</div>
               <div style={{ fontSize: 14.5, lineHeight: 1.55, color: 'var(--ash)' }}>{d}</div>
@@ -94,62 +92,27 @@ function Home() {
         </div>
       </Section>
 
-      {/* VALIDATION DETAIL */}
-      <section style={{ padding: '96px 40px', background: 'var(--kinari)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, alignItems: 'center' }}>
-          <div>
-            <Eyebrow>Validation</Eyebrow>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: 40, lineHeight: 1.1, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400, marginBottom: 20 }}>
-              Every line, reconciled against the contract that funds it.
-            </div>
-            <div style={{ fontSize: 16, color: 'var(--ash)', lineHeight: 1.55, maxWidth: 480 }}>
-              Shoken ingests your general ledger, timesheets, and source documents, then checks every line item against agency schedules, unit caps, allowable cost rules, and match requirements. What used to be a two-week desk audit happens in two minutes.
-            </div>
-            <div style={{ marginTop: 24 }}><Button variant="ghost">Read the validation spec <Arrow /></Button></div>
-          </div>
-          <div style={{ background: 'var(--paper)', border: '1px solid var(--rule)', borderRadius: 8, padding: 22, fontFamily: 'var(--font-mono)', fontSize: 12.5, lineHeight: 1.8, boxShadow: 'var(--shadow-raise)' }}>
-            <div style={{ color: 'var(--stone)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 14 }}>INV-2026-0421 · Validation trace</div>
-            {[
-              ['✓', 'Contract C-42181 · active', 'var(--moss)'],
-              ['✓', 'Case mgmt rate · $48/hr matches schedule', 'var(--moss)'],
-              ['✓', 'Unit cap · 1,004 / 1,200 units YTD', 'var(--moss)'],
-              ['✓', 'Fringe rate · 28.4% within bound', 'var(--moss)'],
-              ['!', 'Indirect · 9.8% exceeds 9.5% cap', 'var(--shu)'],
-              ['✓', 'Match · 25% cash + 5% in-kind', 'var(--moss)'],
-              ['✓', 'Backup · 47 / 47 timesheets attached', 'var(--moss)'],
-              ['→', 'Routing DHS.finance.reimbursement@', 'var(--char)'],
-              ['✓', 'Submitted · 14:02:11 EDT', 'var(--ink)'],
-            ].map(([mark, line, col], i) => (
-              <div key={i} style={{ display: 'flex', gap: 14, color: col }}>
-                <span style={{ color: 'var(--stone)', width: 12 }}>{mark}</span>
-                <span>{line}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* TWO-SIDED */}
       <Section pad="112px 40px">
-        <div style={{ maxWidth: 760, marginBottom: 56 }}>
-          <Eyebrow>Two sides of one ledger</Eyebrow>
+        <div style={{ maxWidth: 820, marginBottom: 56 }}>
+          <Eyebrow>Who Shoken serves</Eyebrow>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 46, lineHeight: 1.08, letterSpacing: '-0.02em', marginTop: 18, fontWeight: 400 }}>
-            Designed for the people<br />who sign the invoices.
+            Designed for government teams.<br />Nonprofits benefit.
           </div>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
           {[
             {
-              who: 'For nonprofits',
-              t: 'Close your month on the second, not the twentieth.',
-              d: 'Upload your ledger. Shoken assembles the invoice, validates every line, and submits it through the right agency channel. Your program officers stop chasing paper.',
-              href: 'nonprofits.html',
+              who: 'For government agencies',
+              t: 'Pre-approved claims. No more line-by-line matching.',
+              d: 'Shoken screens claims at the point of nonprofit submission and resolves errors directly with the provider. Agencies only receive pre-approved claims. No more back-and-forth emails. Faster Level 1 cycle times.',
+              href: 'agencies.html',
             },
             {
-              who: 'For agencies',
-              t: 'Review claims that have already been checked.',
-              d: 'Every invoice arrives pre-validated against your own contract schedules. Approve in a click, or return with a specific line-item reason. Audit with a full trace.',
-              href: 'agencies.html',
+              who: 'For nonprofit organizations',
+              t: 'No more compilation. No more black boxes.',
+              d: 'Nonprofit staff submit backup documentation. Shoken extracts the data to create invoices and identify errors. The provider collaborates with the system to resolve issues in real time. No more invoice compilation, no more revision emails, no more lengthy payment reviews.',
+              href: 'nonprofits.html',
             },
           ].map((card) => (
             <a key={card.who} href={card.href} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -170,21 +133,24 @@ function Home() {
         </div>
       </Section>
 
-      {/* INTEGRATIONS */}
+      {/* HOW SHOKEN RUNS */}
       <Section pad="96px 40px">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 64, alignItems: 'center' }}>
           <div>
-            <Eyebrow>Integrations</Eyebrow>
+            <Eyebrow>How Shoken runs</Eyebrow>
             <div style={{ fontFamily: 'var(--font-display)', fontSize: 40, lineHeight: 1.1, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400, marginBottom: 20 }}>
-              Speaks every system the agencies run on.
+              Stand-alone app or integrated technology — Shoken runs on it all.
             </div>
             <div style={{ fontSize: 15.5, color: 'var(--ash)', lineHeight: 1.55, maxWidth: 480 }}>
-              Ingest from QuickBooks, Sage Intacct, NetSuite, Blackbaud Financial Edge, ADP, Paychex. Submit to PASSPort, CityShare, SFS, and the twelve other agency portals human services contracts actually live in.
+              Ingest data in its native format — no conversions, no reformatting, no file format requirements. Upload from QuickBooks, Sage Intacct, NetSuite, Blackbaud Financial Edge, ADP, Paychex.
+            </div>
+            <div style={{ fontSize: 15.5, color: 'var(--ash)', lineHeight: 1.55, marginTop: 16, maxWidth: 480 }}>
+              Integrate with end-to-end procurement systems or download to desktop. Comprehensive security readiness program — actively pursuing SOC 2 certification.
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, background: 'var(--rule)', border: '1px solid var(--rule)', borderRadius: 6, overflow: 'hidden' }}>
-            {['QuickBooks', 'Sage Intacct', 'NetSuite', 'Blackbaud', 'ADP', 'Paychex', 'PASSPort', 'CityShare', 'SFS'].map((n) => (
-              <div key={n} style={{ background: 'var(--paper)', padding: '20px 16px', fontSize: 13, fontWeight: 500, letterSpacing: '-0.01em', color: 'var(--char)' }}>{n}</div>
+            {['QuickBooks', 'Sage Intacct', 'NetSuite', 'Blackbaud', 'ADP', 'Paychex'].map((n) => (
+              <div key={n} style={{ background: 'var(--paper)', padding: '24px 16px', fontSize: 13, fontWeight: 500, letterSpacing: '-0.01em', color: 'var(--char)' }}>{n}</div>
             ))}
           </div>
         </div>
@@ -193,16 +159,16 @@ function Home() {
       {/* CTA */}
       <section style={{ padding: '120px 40px', textAlign: 'center', borderTop: '1px solid var(--rule)' }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          <Eyebrow>Request access</Eyebrow>
+          <Eyebrow>Request a demo</Eyebrow>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 58, lineHeight: 1.05, letterSpacing: '-0.03em', margin: '22px 0 20px', fontWeight: 400 }}>
-            Close the reimbursement cycle.
+            Cut the paperwork.<br />Keep the oversight.
           </div>
           <div style={{ fontSize: 17, color: 'var(--ash)', maxWidth: 520, margin: '0 auto 32px', lineHeight: 1.55 }}>
             Shoken is onboarding a limited cohort of agencies and nonprofits in 2026.
           </div>
           <div style={{ display: 'inline-flex', gap: 12 }}>
-            <Button size="lg">Request access <Arrow /></Button>
-            <Button variant="secondary" size="lg">Contact sales</Button>
+            <Button size="lg">Request a demo <Arrow /></Button>
+            <Button variant="secondary" size="lg">Contact us</Button>
           </div>
         </div>
       </section>

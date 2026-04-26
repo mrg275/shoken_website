@@ -19,9 +19,9 @@ const { Nav, Footer, Button, Arrow, Eyebrow, Section, PageHeader, Mark } = windo
 
 function Company() {
   const values = [
-    ['Precision is care', 'A line item out of compliance is a paycheck delayed. We treat the paperwork as seriously as the work it funds.'],
-    ['Institutional patience', 'Government moves at the speed of trust. We build for decade-long relationships, not quarterly churn.'],
-    ['Plain language', 'What we mean is what we say. No magic, no disruption, no revolution. A ledger, kept well.'],
+    ['Precision is care.', 'A line item out of compliance is a paycheck delayed. We treat the paperwork as seriously as the work it funds.'],
+    ['Technology augments.', 'We’re building tools for the people who run the system — not a replacement for them.'],
+    ['Respect the system.', 'Government moves carefully. So do we.'],
   ];
   return (
     <div>
@@ -31,21 +31,24 @@ function Company() {
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 80, alignItems: 'start' }}>
           <div>
             <Eyebrow>Company</Eyebrow>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: 64, lineHeight: 1.08, letterSpacing: '-0.03em', fontWeight: 400, margin: '22px 0 32px' }}>
-              Named for an empress who modernized a state.
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 60, lineHeight: 1.08, letterSpacing: '-0.03em', fontWeight: 400, margin: '22px 0 32px' }}>
+              Named for a leader who modernized social service delivery.
             </div>
-            <div style={{ fontSize: 18, color: 'var(--ash)', lineHeight: 1.55, maxWidth: 560 }}>
-              Empress Shōken — consort of Emperor Meiji, principal patron of the Japanese Red Cross, and founder of one of the oldest international humanitarian endowments still active today.
+            <div style={{ fontSize: 17, color: 'var(--ash)', lineHeight: 1.6, maxWidth: 560 }}>
+              Empress Shōken was an innovator and a humanitarian during a period of profound modernization. She pioneered the expansion of social welfare from a crisis response to peacetime institutions — a philosophy that endures today.
             </div>
-            <div style={{ fontSize: 16, color: 'var(--ash)', lineHeight: 1.6, marginTop: 20, maxWidth: 560 }}>
-              She sat at the bridge between imperial institution and humanitarian mission — the same bridge our product walks between government and nonprofit. It is a name we intend to live up to.
+            <div style={{ fontSize: 16, color: 'var(--ash)', lineHeight: 1.6, marginTop: 18, maxWidth: 560 }}>
+              A nonprofit founder, Shōken established a global fund that continues to distribute community-based grants more than a century later.
+            </div>
+            <div style={{ fontSize: 16, color: 'var(--ink)', lineHeight: 1.6, marginTop: 22, maxWidth: 560, fontStyle: 'italic' }}>
+              Enduring infrastructure for human services — then and now.
             </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 12 }}>
             <div style={{ position: 'relative' }}>
               <Mark size={240} />
               <div style={{ position: 'absolute', bottom: -32, left: 0, right: 0, textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--stone)', letterSpacing: '0.08em' }}>
-                昭憲皇太后 · 1849–1914
+                昭憲皇太后
               </div>
             </div>
           </div>
@@ -55,11 +58,11 @@ function Company() {
       <Section pad="96px 40px" bg="var(--kinari)" style={{ borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
         <div style={{ maxWidth: 820 }}>
           <Eyebrow>Mission</Eyebrow>
-          <div style={{ fontFamily: 'var(--font-display)', fontSize: 40, lineHeight: 1.15, letterSpacing: '-0.02em', fontWeight: 400, marginTop: 18 }}>
-            Public dollars should reach the people they were intended for — on time, in full, without requiring a finance team to fight for them.
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: 38, lineHeight: 1.18, letterSpacing: '-0.02em', fontWeight: 400, marginTop: 18 }}>
+            Public dollars should fund communities — not paperwork — on time, in full, without requiring finance teams to fight for them.
           </div>
-          <div style={{ fontSize: 16, color: 'var(--ash)', lineHeight: 1.6, marginTop: 26, maxWidth: 640 }}>
-            The United States disburses more than $200 billion a year through human services contracts with nonprofit providers. The administrative cost of moving that money — the invoicing, the validation, the reconciliation — runs into the billions. We think that friction is a civic design problem, and we think it can be solved.
+          <div style={{ fontSize: 16, color: 'var(--ash)', lineHeight: 1.65, marginTop: 26, maxWidth: 680 }}>
+            State and local government disburse more than $100 billion a year through human services contracts with nonprofit providers. The administrative cost of moving that money — the invoicing, the validation, the reconciliation — runs into the billions. That friction is a civic design problem. We think it can be solved.
           </div>
         </div>
       </Section>
@@ -82,36 +85,59 @@ function Company() {
         </div>
       </Section>
 
+      {/* TEAM */}
       <section style={{ padding: '96px 40px', background: 'var(--ink)', color: 'var(--kinari)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 64 }}>
-          <div>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ maxWidth: 820, marginBottom: 48 }}>
             <Eyebrow color="var(--shu-bright)">Team</Eyebrow>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: 40, lineHeight: 1.1, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400 }}>
-              Assembled for this problem.
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 44, lineHeight: 1.08, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400 }}>
+              Assembled to solve this problem.
+            </div>
+            <div style={{ fontSize: 16, color: 'var(--mist)', lineHeight: 1.65, marginTop: 22 }}>
+              Shoken is a small team drawn from public procurement and financial management, nonprofit operations, government technology, and cyber security. Collectively, we represent more than sixty years of working in, for, and with government.
+            </div>
+            <div style={{ fontSize: 16, color: 'var(--mist)', lineHeight: 1.65, marginTop: 16 }}>
+              Our advisors include city and state leaders, government fiscal and procurement executives, and nonprofit contracting veterans. They have lived this problem — and they are committed to solving it.
             </div>
           </div>
-          <div style={{ fontSize: 16, color: 'var(--mist)', lineHeight: 1.65 }}>
-            <p style={{ margin: '0 0 18px' }}>
-              Shoken is a small team drawn from public finance, nonprofit operations, enterprise accounting software, and applied ML. Several of us ran finance at large nonprofits. Several of us built the systems the other side uses.
-            </p>
-            <p style={{ margin: 0 }}>
-              We take institutional work seriously. Our advisors include former agency contract officers, state comptroller staff, and nonprofit CFOs who have lived the problem for decades. <a href="careers.html" style={{ color: 'var(--kinari)', textDecoration: 'underline', textUnderlineOffset: 4 }}>We are hiring</a>.
-            </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: 40, alignItems: 'start', paddingTop: 32, borderTop: '1px solid rgba(246,241,232,0.16)' }}>
+            <div style={{
+              width: 240, height: 280, background: 'rgba(246,241,232,0.06)',
+              border: '1px solid rgba(246,241,232,0.16)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--mist)',
+              letterSpacing: '0.08em', textAlign: 'center', padding: 20,
+              backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(246,241,232,0.03) 8px, rgba(246,241,232,0.03) 9px)',
+            }}>
+              JG · headshot<br />from LinkedIn
+            </div>
+            <div>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: 30, fontWeight: 400, letterSpacing: '-0.02em', color: 'var(--kinari)' }}>
+                Jennifer Geiling
+              </div>
+              <div style={{ fontSize: 14, color: 'var(--shu-bright)', marginTop: 6, letterSpacing: '0.02em' }}>
+                Founder, CEO
+              </div>
+              <div style={{ marginTop: 18 }}>
+                <a href="https://www.linkedin.com/in/jennifergeiling/" target="_blank" rel="noopener" style={{ fontSize: 13.5, color: 'var(--kinari)', textDecoration: 'underline', textUnderlineOffset: 4 }}>
+                  LinkedIn →
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* CONTACT BLOCK */}
       <Section pad="96px 40px">
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40 }}>
           {[
             ['Headquarters', 'New York, NY'],
-            ['Offices', 'Washington, DC · Sacramento, CA'],
-            ['Backed by', 'Disclosed at close of Series A'],
-            ['Founded', '2025'],
-            ['Status', 'Private · Delaware C-Corp'],
-            ['Press', 'press@shoken.co'],
-          ].map(([k, v]) => (
-            <div key={k}>
+            ['Founded', '2026'],
+            ['Contact us', <a href="mailto:inquiry@agentshoken.com" style={{ color: 'var(--ink)', textDecoration: 'none', borderBottom: '1px solid var(--rule)' }}>inquiry@agentshoken.com</a>],
+          ].map(([k, v], i) => (
+            <div key={i}>
               <div style={{ fontSize: 11, color: 'var(--stone)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 8 }}>{k}</div>
               <div style={{ fontSize: 15.5, color: 'var(--ink)' }}>{v}</div>
             </div>
@@ -119,17 +145,6 @@ function Company() {
         </div>
       </Section>
 
-      <section style={{ padding: '120px 40px', textAlign: 'center', borderTop: '1px solid var(--rule)' }}>
-        <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          <div style={{ fontFamily: 'var(--font-display)', fontSize: 52, lineHeight: 1.05, letterSpacing: '-0.03em', fontWeight: 400, margin: '0 0 24px' }}>
-            Come build this with us.
-          </div>
-          <div style={{ display: 'inline-flex', gap: 12 }}>
-            <Button size="lg" href="careers.html">See open roles <Arrow /></Button>
-            <Button variant="secondary" size="lg">Contact us</Button>
-          </div>
-        </div>
-      </section>
       <Footer />
     </div>
   );

@@ -19,23 +19,23 @@ const { Nav, Footer, Button, Arrow, Eyebrow, Section, PageHeader } = window;
 
 function BeforeAfter() {
   const before = [
-    ['Day 1–3', 'Finance pulls the ledger, reconciles to program reports.'],
-    ['Day 4–7', 'Program officers chase missing timesheets and receipts.'],
-    ['Day 8–10', 'Reformat into each agency\'s invoice template.'],
-    ['Day 11–14', 'Treasurer review. Package and submit.'],
-    ['Day 15–40', 'Wait. Return. Rework. Resubmit.'],
+    ['Days 1–3', 'Finance pulls the ledger, reconciles to program reports.'],
+    ['Days 4–7', 'Program officers chase missing timesheets and receipts.'],
+    ['Days 8–10', 'Reformat into each agency\'s invoice template.'],
+    ['Days 11–14', 'Finance reviews, updates, submits.'],
+    ['Days 15–35', 'Wait. Revise. Resubmit. Email. Wait. Revise. Resubmit. Email. Wait.'],
+    ['Day 36', 'Invoice moves to Level 2 agency review.'],
   ];
   const after = [
-    ['Day 1', 'Close the books. Shoken ingests the ledger.'],
-    ['Day 1', 'Invoice assembled, validated, signed, submitted.'],
-    ['Day 2–5', 'Agency reviews a pre-validated package.'],
-    ['Day 10–15', 'Payment received.'],
+    ['Day 1', 'Close the books, gather backup documentation. Upload ledger and data to Shoken.'],
+    ['Day 1', 'Invoice is assembled, validated, questions resolved in real time, invoice finalized.'],
+    ['Day 2', 'Invoice moves to agency review.'],
   ];
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, border: '1px solid var(--rule)', borderRadius: 8, overflow: 'hidden' }}>
       <div style={{ padding: '28px 28px 32px', borderRight: '1px solid var(--rule)', background: 'var(--kinari)' }}>
         <div style={{ fontSize: 11, color: 'var(--stone)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 16 }}>Before Shoken</div>
-        <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, letterSpacing: '-0.02em', fontWeight: 400, marginBottom: 22 }}>40 days, five roles</div>
+        <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, letterSpacing: '-0.02em', fontWeight: 400, marginBottom: 22 }}>20-day reviews</div>
         {before.map(([d, b], i) => (
           <div key={i} style={{ display: 'grid', gridTemplateColumns: '90px 1fr', gap: 12, padding: '12px 0', borderTop: '1px solid var(--rule)', fontSize: 13.5 }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--stone)' }}>{d}</span>
@@ -47,7 +47,7 @@ function BeforeAfter() {
         <div style={{ fontSize: 11, color: 'var(--shu)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ width: 6, height: 6, background: 'var(--shu)' }} />With Shoken
         </div>
-        <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, letterSpacing: '-0.02em', fontWeight: 400, marginBottom: 22 }}>15 days, one closing</div>
+        <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, letterSpacing: '-0.02em', fontWeight: 400, marginBottom: 22 }}>2 days, one closing</div>
         {after.map(([d, b], i) => (
           <div key={i} style={{ display: 'grid', gridTemplateColumns: '90px 1fr', gap: 12, padding: '12px 0', borderTop: '1px solid var(--rule)', fontSize: 13.5 }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: 'var(--stone)' }}>{d}</span>
@@ -61,12 +61,12 @@ function BeforeAfter() {
 
 function NonprofitBenefits() {
   const rows = [
-    ['Close on the second', 'Your monthly close finishes the day the books do — not three weeks later.'],
-    ['No more templates', 'Agency-specific invoice formats are generated. Your team works in the tools they already use.'],
-    ['Fewer returns', 'Shoken catches rule violations before submission. First-pass acceptance averages 99.7%.'],
-    ['Cash in faster', 'Median days-to-payment drops from 43 to 18. Payroll without a line of credit.'],
-    ['Program officers on programs', 'Your staff stops chasing paper and gets back to the people they serve.'],
-    ['Audit with a click', 'A-133, OIG, state audits — every line has a citation, ready to export.'],
+    ['Get paid faster.', 'Errors get caught and resolved before submission — not weeks into agency review. Pre-validated invoices move through faster, payment cycles compress, and cash flow is more predictable.'],
+    ['Focus on mission, not paperwork.', 'The hours your team spends compiling vouchers, chasing receipts, and responding to revisions are hours that don’t reach the communities you serve. Shoken gives those hours back.'],
+    ['Job satisfaction.', 'Experienced fiscal and compliance staff are hard to hire and harder to keep. Shoken takes the most tedious, burnout-inducing work off their plates so they can focus on financial strategy, budgeting, and the work that uses their expertise.'],
+    ['Open the invoicing black box.', 'Government contracting can feel like submitting into a void — invoices disappear, revisions come back without explanation, and status updates depend on who you know. Shoken shows you every step: which rule triggered every flag, where every invoice sits in the review process, and exactly what needs to happen next.'],
+    ['Data-driven operations.', 'Which errors come up most? Which agencies flag which issues? Which programs generate the most revisions? Every submission and revision is logged and exportable — use the data to strengthen staff training, fix template issues, and target process improvements.'],
+    ['Built for your team.', 'Your team was hired to serve communities, not to format paperwork. Shoken gives them back the hours.'],
   ];
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, background: 'var(--rule)', border: '1px solid var(--rule)', borderRadius: 6 }}>
@@ -86,8 +86,8 @@ function Nonprofits() {
       <Nav current="nonprofits.html" />
       <PageHeader
         eyebrow="For nonprofits"
-        title="Close your month on the second, not the twentieth."
-        subtitle="Your program officers were not hired to format invoices. Shoken handles the paperwork so your staff can stay focused on the programs they run." />
+        title="Cash flow clarity. Mission focused."
+        subtitle="Less time on paperwork. More time on mission. Faster invoicing in between." />
 
       <Section pad="56px 40px 96px">
         <BeforeAfter />
@@ -105,47 +105,9 @@ function Nonprofits() {
         </div>
       </section>
 
-      <Section pad="112px 40px">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 64, alignItems: 'center' }}>
-          <div>
-            <Eyebrow>Systems of record</Eyebrow>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: 40, lineHeight: 1.1, letterSpacing: '-0.02em', marginTop: 16, fontWeight: 400, marginBottom: 20 }}>
-              Reads your ledger,<br />your payroll,<br />your drives.
-            </div>
-            <div style={{ fontSize: 15.5, color: 'var(--ash)', lineHeight: 1.55, maxWidth: 480 }}>
-              No migrations, no parallel systems, no CSV templates. Shoken connects to what you already run and leaves your existing workflows in place.
-            </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, background: 'var(--rule)', border: '1px solid var(--rule)', borderRadius: 6, overflow: 'hidden' }}>
-            {['QuickBooks', 'Sage Intacct', 'NetSuite', 'Blackbaud', 'ADP', 'Paychex', 'Salesforce NPSP', 'Google Drive', 'Dropbox'].map((n) => (
-              <div key={n} style={{ background: 'var(--paper)', padding: '20px 16px', fontSize: 13, fontWeight: 500, color: 'var(--char)' }}>{n}</div>
-            ))}
-          </div>
-        </div>
-      </Section>
 
-      <section style={{ padding: '96px 40px', background: 'var(--ink)', color: 'var(--kinari)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1, background: 'rgba(246,241,232,0.08)', border: '1px solid rgba(246,241,232,0.08)' }}>
-            {[
-              ['43 → 18', 'Median days to payment'],
-              ['99.7%', 'First-pass acceptance'],
-              ['2m 14s', 'Median invoice cycle time'],
-              ['12 days', 'Saved per monthly close'],
-            ].map(([v, l]) => (
-              <div key={l} style={{ padding: '40px 28px', background: 'var(--ink)' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 44, fontWeight: 400, letterSpacing: '-0.03em', color: 'var(--shu-bright)' }}>{v}</div>
-                <div style={{ fontSize: 13, color: 'var(--mist)', marginTop: 10 }}>{l}</div>
-              </div>
-            ))}
-          </div>
-          <div style={{ fontSize: 11, color: 'var(--stone)', fontFamily: 'var(--font-mono)', marginTop: 18, letterSpacing: '0.05em' }}>
-            Targets based on early-access cohort modeling. Not yet externally audited.
-          </div>
-        </div>
-      </section>
 
-      <section style={{ padding: '120px 40px', textAlign: 'center' }}>
+      <section style={{ padding: '120px 40px', textAlign: 'center', borderTop: '1px solid var(--rule)' }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 52, lineHeight: 1.05, letterSpacing: '-0.03em', fontWeight: 400, margin: '0 0 24px' }}>
             Close on the second.
